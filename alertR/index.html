@@ -1,0 +1,168 @@
+﻿<!doctype html>
+<html>
+<head>
+    <title>alertR - Live Application Status</title>
+ </head>
+<body>
+
+    <div id="onlineApps" style="border:1px dotted black;padding:10px;width:50%">
+        <input type="text" id="myInput" onkeyup="searchApps()" placeholder="Search for online applications..">
+
+        <ul id="myUL">
+            <li onclick="addApplication(this.innerText)"><a href="#" class="header">Front Office</a></li>
+            <li onclick="addApplication(this.innerText)"><a href="#">TradeX</a></li>
+            <li onclick="addApplication(this.innerText)"><a href="#">Booker3000</a></li>
+
+            <li onclick="addApplication(this.innerText)"><a href="#" class="header">Middle Office</a></li>
+            <li onclick="addApplication(this.innerText)"><a href="#">LegalChecker</a></li>
+            <li onclick="addApplication(this.innerText)"><a href="#">DataFaker</a></li>
+
+            <li onclick="addApplication(this.innerText)"><a href="#" class="header">Back Office</a></li>
+            <li onclick="addApplication(this.innerText)"><a href="#">RiskAnalyser</a></li>
+            <li onclick="addApplication(this.innerText)"><a href="#">Accounteroo</a></li>
+        </ul> 
+    </div>
+    <br />
+
+    <div>My Applications<br />
+        <div class="child_div_1">
+            <ul id="myApps">
+            </ul>
+        </div>
+
+        <div class="child_div_2">My Subscriptions</div>
+    </div>
+</body>
+</html>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+    
+    var socket = io();
+
+
+    function addApplication(name) {
+        // Add the clicked application to the list of my Apps.
+        var ul = document.getElementById("myApps");
+        var li = document.createElement("li");
+        li.appendChild(document.createTextNode(name));
+        li.addEventListener("click", function () { alert(name);})
+        ul.appendChild(li);
+        socket.emit('addApplication', name);
+    }
+    
+
+    function searchApps() {
+        // Declare variables.
+        var input, filter, ul, li, a, i;
+        input = document.getElementById('myInput');
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("myUL");
+        li = ul.getElementsByTagName('li');
+
+        // Loop through all list items, and hide those who don't match the search query
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName("a")[0];
+            if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+    }
+
+
+
+
+        //for (var i = 0; i < li.length; i++) {
+        //    var a = li[i].getElementsByTagName("a")[0];
+        //    li[i].onclick = function () {
+        //        socket.emit('addApplication', this.innerText);
+        //        addApplication(this.innerText);
+        //    }
+        //}
+
+
+   //Chat app example.
+  //$(function () {
+  //  var socket = io();
+  //  $('form').submit(function(){
+
+  //    socket.emit('chat message', $('#m').val());
+  //    $('#m').val('');
+  //    return false;
+  //  });
+  //  socket.on('chat message', function(msg){
+  //    $('#messages').append($('<li>').text(msg));
+  //  });
+  //});
+</script>
+
+<style>
+    #myInput {
+        background-image: url('/css/searchicon.png'); /* Add a search icon to input */
+        background-position: 10px 12px; /* Position the search icon */
+        background-repeat: no-repeat; /* Do not repeat the icon image */
+        width: 50%; /* half-width */
+        font-size: 16px; /* Increase font-size */
+        padding: 12px 20px 12px 40px; /* Add some padding */
+        border: 1px solid #ddd; /* Add a grey border */
+        margin-bottom: 12px; /* Add some space below the input */
+    }
+
+    #myUL, #myApps {
+        /* Remove default list styling */
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+        #myApps, #myUL li a {
+            border: 1px solid #ddd; /* Add a border to all links */
+            margin-top: -1px; /* Prevent double borders */
+            background-color: #f6f6f6; /* Grey background color */
+            padding: 1px; /* Add some padding */
+            text-decoration: none; /* Remove default text underline */
+            width: auto; /* half-width */
+            font-size: 18px; /* Increase the font-size */
+            font-family:Calibri;
+            color: black; /* Add a black text color */
+            display: block; /* Make it into a block element to fill the whole list */
+        }
+
+            #myUL li a.header {
+                background-color: #e2e2e2; /* Add a darker background color for headers */
+                cursor: default; /* Change cursor style */
+            }
+
+            #myUL li a:hover:not(.header) {
+                background-color: #eee; /* Add a hover effect to all links, except for headers */
+            }
+
+
+            #myApps {
+                border:1px dotted black;
+                height: auto;
+                padding:10px;
+            }
+
+          .child_div_1 {
+              width: 45%;
+              height: auto;
+              border: 1px solid black;
+              margin-right: 10px;
+              float: left;
+              font-family:Calibri;
+          }
+
+             .child_div_2 {
+              width: 45%;
+              height: auto;
+              border: 1px solid black;
+              /*margin-right: 10px;*/
+              float: right;
+              font-family:Calibri;
+
+          }
+</style>

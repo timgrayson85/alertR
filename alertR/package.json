@@ -1,0 +1,13 @@
+{
+  "name": "alert-r",
+  "version": "0.0.0",
+  "description": "alertR",
+  "main": "app.js",
+  "author": {
+    "name": "Tim"
+  },
+  "dependencies": {
+    "express": "^4.15.2",
+    "socket.io": "^2.0.3"
+  }
+}
