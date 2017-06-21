@@ -31,12 +31,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
+    <Compile Include="public\functions.js" />
     <Content Include="index.html" />
     <Content Include="package.json" />
     <Content Include="README.md" />
     <Content Include="style.css" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="public\" />
     <Folder Include="typings\" />
     <Folder Include="typings\globals\" />
     <Folder Include="typings\globals\node\" />
