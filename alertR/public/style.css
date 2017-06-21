@@ -1,41 +1,40 @@
 ﻿#myInput {
-        background-image: url('/css/searchicon.png'); /* Add a search icon to input */
-        background-position: 10px 12px; /* Position the search icon */
-        background-repeat: no-repeat; /* Do not repeat the icon image */
-        width: 50%; /* half-width */
-        font-size: 16px; /* Increase font-size */
-        padding: 12px 20px 12px 40px; /* Add some padding */
-        border: 1px solid #ddd; /* Add a grey border */
-        margin-bottom: 12px; /* Add some space below the input */
+        background-image: url('/css/searchicon.png'); 
+        background-position: 10px 12px; 
+        background-repeat: no-repeat; 
+        width: 50%; 
+        font-size: 16px; 
+        padding: 12px 20px 12px 40px; 
+        border: 1px solid #ddd; 
+        margin-bottom: 12px;
     }
 
     #myUL, #myApps {
-        /* Remove default list styling */
         list-style-type: none;
         padding: 0;
         margin: 0;
     }
 
         #myApps, #myUL li a {
-            border: 1px solid #ddd; /* Add a border to all links */
-            margin-top: -1px; /* Prevent double borders */
-            background-color: #f6f6f6; /* Grey background color */
-            padding: 1px; /* Add some padding */
-            text-decoration: none; /* Remove default text underline */
-            width: auto; /* half-width */
-            font-size: 18px; /* Increase the font-size */
+            border: 1px solid #ddd;
+            margin-top: -1px;
+            background-color: #f6f6f6;
+            padding: 1px;
+            text-decoration: none;
+            width: auto;
+            font-size: 18px;
             font-family:Calibri;
-            color: black; /* Add a black text color */
-            display: block; /* Make it into a block element to fill the whole list */
+            color: black;
+            display: block;
         }
 
             #myUL li a.header {
-                background-color: #e2e2e2; /* Add a darker background color for headers */
-                cursor: default; /* Change cursor style */
+                background-color: #e2e2e2;
+                cursor: default;
             }
 
             #myUL li a:hover:not(.header) {
-                background-color: #eee; /* Add a hover effect to all links, except for headers */
+                background-color: #eee;
             }
 
 
@@ -58,7 +57,6 @@
               width: 45%;
               height: auto;
               border: 1px solid black;
-              /*margin-right: 10px;*/
               float: right;
               font-family:Calibri;
 
