@@ -9,17 +9,17 @@
         <input type="text" id="myInput" onkeyup="searchApps()" placeholder="Search for online applications..">
 
         <ul id="myUL">
-            <li onclick="addApplication(this.innerText)"><a href="#" class="header">Front Office</a></li>
-            <li onclick="addApplication(this.innerText)"><a href="#">TradeX</a></li>
-            <li onclick="addApplication(this.innerText)"><a href="#">Booker3000</a></li>
+            <li onclick="addAppEvent(this.innerText)"><a href="#" class="header">Front Office</a></li>
+            <li onclick="addAppEvent(this.innerText)"><a href="#">TradeX</a></li>
+            <li onclick="addAppEvent(this.innerText)"><a href="#">Booker3000</a></li>
 
-            <li onclick="addApplication(this.innerText)"><a href="#" class="header">Middle Office</a></li>
-            <li onclick="addApplication(this.innerText)"><a href="#">LegalChecker</a></li>
-            <li onclick="addApplication(this.innerText)"><a href="#">DataFaker</a></li>
+            <li onclick="addAppEvent(this.innerText)"><a href="#" class="header">Middle Office</a></li>
+            <li onclick="addAppEvent(this.innerText)"><a href="#">LegalChecker</a></li>
+            <li onclick="addAppEvent(this.innerText)"><a href="#">DataFaker</a></li>
 
-            <li onclick="addApplication(this.innerText)"><a href="#" class="header">Back Office</a></li>
-            <li onclick="addApplication(this.innerText)"><a href="#">RiskAnalyser</a></li>
-            <li onclick="addApplication(this.innerText)"><a href="#">Accounteroo</a></li>
+            <li onclick="addAppEvent(this.innerText)"><a href="#" class="header">Back Office</a></li>
+            <li onclick="addAppEvent(this.innerText)"><a href="#">RiskAnalyser</a></li>
+            <li onclick="addAppEvent(this.innerText)"><a href="#">Accounteroo</a></li>
         </ul> 
     </div>
     <br />
@@ -41,16 +41,20 @@
     
     var socket = io();
 
+    function addAppEvent(name)
+    {
+        socket.emit('addApplication', name);
+    }
 
-    function addApplication(name) {
+
+    socket.on('application-added', function addApplication(name) {
         // Add the clicked application to the list of my Apps.
         var ul = document.getElementById("myApps");
         var li = document.createElement("li");
         li.appendChild(document.createTextNode(name));
-        li.addEventListener("click", function () { alert(name);})
-        ul.appendChild(li);
-        socket.emit('addApplication', name);
-    }
+        //li.addEventListener("click", function () { alert(name);})
+        ul.appendChild(li);      
+    });
     
 
     function searchApps() {
@@ -72,6 +76,10 @@
         }
     }
 
+
+    socket.on('some event', function (msg) {
+        alert("joined room");
+    });
 
 
 

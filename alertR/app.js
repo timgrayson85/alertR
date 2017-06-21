@@ -8,15 +8,21 @@ app.get('/', function (req, res) {
 });
 
 
-
 io.on('connection', function (socket) {
 
+    // Get a unique identifer for this client.
     var ip = socket.conn.remoteAddress;
     console.log('User: ' + ip + ' has connected');
- 
-    // Listed to an addApplication event then log it.
+        
+    // Create a new room for this client.
+    socket.join(ip + '-room');
+        
+    // Listen for an 'addApplication' event then push it to all sockets assigned to the client. 
+    // This is necessary in case the user has multiple tabs or browsers open.
     socket.on('addApplication', function (app) {
+        io.to(ip+'-room').emit('application-added', app);
         console.log('User ' + ip + ' added: ' + app + ' to their apps');
+               
     });
 
 
