@@ -9,6 +9,7 @@ app.get('/', function (req, res) {
 
 });
 
+// Make static JavaScript files available.
 app.use(express.static('./public'));
 
 

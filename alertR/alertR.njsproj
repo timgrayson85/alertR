@@ -34,6 +34,7 @@
     <Compile Include="public\functions.js" />
     <Content Include="index.html" />
     <Content Include="package.json" />
+    <Content Include="public\style.css" />
     <Content Include="README.md" />
     <Content Include="style.css" />
   </ItemGroup>
