@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Raise new alert</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="functions.js"></script>
+
+<style>   
+    
+    .alert {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+    opacity: 1;
+    transition: opacity 0.6s;
+    margin-bottom: 15px;
+    }
+
+    .alert.success {background-color: #4CAF50;}
+    .alert.info {background-color: #2196F3;}
+    .alert.warning {background-color: #ff9800;}</style>
+ 
+
+</head>
+<body>
+
+    <h3 id="myHeader"></h3>
+
+    <div class="alert" onclick="raiseCriticalAlert(url)">
+        <strong>Critical!</strong> Something has gone terribly wrong.
+    </div>
+
+
+    <div class="alert warning"  onclick="raiseWarningAlert(url)">
+        <strong>Warning!</strong> Something has gone wrong but there is no user impact yet.
+    </div>
+
+    <div class="alert info"  onclick="raiseInfoAlert(url)">
+        <strong>Info!</strong> Non-urgent information.
+    </div>
+
+    <div class="alert success"  onclick="raiseSuccessAlert(url)">
+        <strong>OK!</strong> Everything is ok now.
+    </div>
+
+</body>
+</html>
+<script>
+    var url = window.location.search;
+    url = url.replace("?", ''); // remove the ?
+    myHeader.innerText = "Raise new alert on " + url;
+
+
+</script>

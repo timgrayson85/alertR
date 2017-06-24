@@ -2,42 +2,42 @@
 <html>
 <head>
     <title>alertR - Live Application Status</title>
-
-
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="functions.js"></script>
+    
  </head>
 <body>
-        
-    <div id="onlineApps" style="border:1px dotted black;padding:10px;width:50%">
+           
+    <div id="onlineApps" style="border:1px dotted black;padding:10px;width:auto">
         <input type="text" id="myInput" onkeyup="searchApps()" placeholder="Search for online applications..">
 
         <ul id="myUL">
-            <li onclick="addAppEvent(this.innerText)"><a href="#" class="header">Front Office</a></li>
-            <li onclick="addAppEvent(this.innerText)"><a href="#">TradeX</a></li>
-            <li onclick="addAppEvent(this.innerText)"><a href="#">Booker3000</a></li>
+            <li><a href="#" class="header">Front Office</a></li>
+            <li><div><a href="#">TradeX</a><button onclick="addAppEvent('TradeX')">Add to My Applications</button><button onclick="    addSubEvent('TradeX')">Subscribe</button></div></li>
+            <li><div><a href="#">Booker3000</a><button onclick="addAppEvent('Booker3000')">Add to My Applications</button><button onclick="addSubEvent('Booker3000')">Subscribe</button></div></li>
 
-            <li onclick="addAppEvent(this.innerText)"><a href="#" class="header">Middle Office</a></li>
-            <li onclick="addAppEvent(this.innerText)"><a href="#">LegalChecker</a></li>
-            <li onclick="addAppEvent(this.innerText)"><a href="#">DataFaker</a></li>
+            <li><a href="#" class="header">Middle Office</a></li>
+            <li><div><a href="#">LegalChecker</a><button onclick="addAppEvent('LegalChecker')">Add to My Applications</button><button onclick="addSubEvent('LegalChecker')">Subscribe</button></div></li>
+            <li><div><a href="#">DataFaker</a><button onclick="addAppEvent('DataFaker')">Add to My Applications</button><button onclick="addSubEvent('DataFaker')">Subscribe</button></div></li>
 
-            <li onclick="addAppEvent(this.innerText)"><a href="#" class="header">Back Office</a></li>
-            <li onclick="addAppEvent(this.innerText)"><a href="#">RiskAnalyser</a></li>
-            <li onclick="addAppEvent(this.innerText)"><a href="#">Accounteroo</a></li>
-        </ul> 
+            <li><a href="#" class="header">Back Office</a></li>
+            <li><div><a href="#">RiskAnalyser</a><button onclick="addAppEvent('RiskAnalyser')">Add to My Applications</button><button onclick="addSubEvent('RiskAnalyser')">Subscribe</button></div></li>
+            <li><div><a href="#">Accounter</a><button onclick="addAppEvent('Accounter')">Add to My Applications</button><button onclick="addSubEvent('Accounter')">Subscribe</button></div></li>
+        </ul>
     </div>
     <br />
 
-    <div>My Applications<br />
+    <div>
+        My Applications<br />
         <div class="child_div_1">
-            <ul id="myApps">
-            </ul>
+            <ul id="myApps"></ul>
         </div>
 
-        <div class="child_div_2">My Subscriptions</div>
+        <div class="child_div_2">My Subscriptions<br />
+            <ul id="mySubs"></ul>
+        </div>
     </div>
+
 </body>
 </html>
-
-<link rel="stylesheet" type="text/css" href="style.css" />
-<script src="/socket.io/socket.io.js"></script>
-<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
-<script src="/functions.js"></script>

@@ -32,20 +32,26 @@
   <ItemGroup>
     <Compile Include="app.js" />
     <Compile Include="public\functions.js" />
+    <Content Include="public\alertdialog.html" />
     <Content Include="index.html" />
     <Content Include="package.json" />
     <Content Include="public\style.css" />
     <Content Include="README.md" />
-    <Content Include="style.css" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="public\" />
     <Folder Include="typings\" />
     <Folder Include="typings\globals\" />
+    <Folder Include="typings\globals\bootbox\" />
+    <Folder Include="typings\globals\bootstrap\" />
+    <Folder Include="typings\globals\jquery\" />
     <Folder Include="typings\globals\node\" />
     <Folder Include="typings\globals\socket.io\" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="typings\globals\bootbox\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\bootstrap\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\jquery\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\node\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\socket.io\index.d.ts" />
     <TypeScriptCompile Include="typings\index.d.ts" />
