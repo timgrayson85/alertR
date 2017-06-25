@@ -1,6 +1,6 @@
 # alertR
 
-</b>Get Started<b>
+<b>Get Started</b>
 
 1. Download Node.js
 
