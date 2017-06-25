@@ -114,16 +114,36 @@ socket.on('application-added', function addApplication(name) {
     // Add the clicked application to the list of my Apps.
     var ul = document.getElementById("myApps");
     var li = document.createElement("li");
+    var items = ul.getElementsByTagName('li');
     var button = document.createElement("button");
-    button.innerHTML = "Raise Alert";
-    li.appendChild(document.createTextNode(name));
-    li.addEventListener("click", function () {
-        var myWindow = window.open("alertdialog.html?" + name, "", "width=300,height=500");
-    })
+    var found = 0;
+    
+    // Check if the user is already subscribed before adding this application.
+    if (items.length > 0) {
+        for (var i = 0; i < items.length; i++) {
+            // Substring required to trim off 'Raise Alert' text.
+            if (items[i].innerText.substring(0, name.length) == name) {
+                found++;
+            }
+        }
+    }
 
-    li.appendChild(button);
-    ul.appendChild(li);
 
+    if (found > 0) {
+        alert('You already have ' + name + ' in your applications');
+    }
+    else {
+        // Add the application to the list.
+        button.innerHTML = "Raise Alert";
+        li.appendChild(document.createTextNode(name));
+        li.addEventListener("click", function () {
+            var myWindow = window.open("alertdialog.html?" + name, "", "width=300,height=500");
+        })
+
+        li.appendChild(button);
+        ul.appendChild(li);
+    }
+  
 });
 
 
