@@ -10,7 +10,6 @@ function addSubEvent(name) {
     socket.emit('add-subscription', name);
 };
 
-
 // Raise a critical alert for an applicaiton.
 function raiseCriticalAlert(name) {
      socket.emit('critical-alert', name);
@@ -39,11 +38,47 @@ socket.on('critical-alert-raised', function changeStyle(name) {
     // Loop through all list items, and change the status of the application
     for (var i = 0; i < li.length; ++i) {
         if (li[i].innerText == name) {
-            li[i].style.color = "red";
+            li[i].style.color = '#f44336';
         }
     }
-        // do something with items[i], which is a <li> element
-    });
+});
+
+socket.on('warning-alert-raised', function changeStyle(name) {
+    var ul = document.getElementById("mySubs");
+    var li = ul.getElementsByTagName('li');
+
+    // Loop through all list items, and change the status of the application
+    for (var i = 0; i < li.length; ++i) {
+        if (li[i].innerText == name) {
+            li[i].style.color = "#ff9800";
+        }
+    }
+});
+
+socket.on('info-alert-raised', function changeStyle(name) {
+    var ul = document.getElementById("mySubs");
+    var li = ul.getElementsByTagName('li');
+
+    // Loop through all list items, and change the status of the application
+    for (var i = 0; i < li.length; ++i) {
+        if (li[i].innerText == name) {
+            li[i].style.color = "#2196F3";
+        }
+    }
+});
+
+socket.on('success-alert-raised', function changeStyle(name) {
+    var ul = document.getElementById("mySubs");
+    var li = ul.getElementsByTagName('li');
+
+    // Loop through all list items, and change the status of the application
+    for (var i = 0; i < li.length; ++i) {
+        if (li[i].innerText == name) {
+            li[i].style.color = "#4CAF50";
+        }
+    }
+});
+
 
 
 

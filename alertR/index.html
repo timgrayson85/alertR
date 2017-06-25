@@ -8,13 +8,14 @@
     
  </head>
 <body>
+    <div class="online_apps_header"><h3>All Online Applications</h3></div>
            
     <div id="onlineApps" style="border:1px dotted black;padding:10px;width:auto">
         <input type="text" id="myInput" onkeyup="searchApps()" placeholder="Search for online applications..">
 
         <ul id="myUL">
             <li><a href="#" class="header">Front Office</a></li>
-            <li><div><a href="#">TradeX</a><button onclick="addAppEvent('TradeX')">Add to My Applications</button><button onclick="    addSubEvent('TradeX')">Subscribe</button></div></li>
+            <li><div><a href="#">TradeX</a><button onclick="addAppEvent('TradeX')">Add to My Applications</button><button onclick="addSubEvent('TradeX')">Subscribe</button></div></li>
             <li><div><a href="#">Booker3000</a><button onclick="addAppEvent('Booker3000')">Add to My Applications</button><button onclick="addSubEvent('Booker3000')">Subscribe</button></div></li>
 
             <li><a href="#" class="header">Middle Office</a></li>
@@ -28,13 +29,12 @@
     </div>
     <br />
 
-    <div>
-        My Applications<br />
-        <div class="child_div_1">
+    <div> 
+        <div class="child_div_1"><h3>My Applications</h3><br />
             <ul id="myApps"></ul>
         </div>
 
-        <div class="child_div_2">My Subscriptions<br />
+        <div class="child_div_2"><h3>My Subscriptions</h3><br />
             <ul id="mySubs"></ul>
         </div>
     </div>

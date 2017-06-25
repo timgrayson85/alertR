@@ -9,13 +9,13 @@
         margin-bottom: 12px;
     }
 
-    #myUL, #myApps {
+    #myUL{
         list-style-type: none;
         padding: 0;
         margin: 0; 
     }
 
-        #myApps, #myUL li a {
+        #myUL li a {    
             border: 1px solid #ddd;
             margin-top: -1px;
             background-color: #f6f6f6;
@@ -25,7 +25,8 @@
             font-size: 18px;
             font-family:Calibri;
             color: black;
-            display: block;       
+            display: block;
+                   
         }
 
             #myUL li a.header {
@@ -39,6 +40,14 @@
 
 
             #myApps {
+                list-style-type: none;
+                border:1px dotted black;
+                height: auto;
+                padding:10px;
+            }
+
+            #mySubs {
+                list-style-type: none;
                 border:1px dotted black;
                 height: auto;
                 padding:10px;
@@ -60,4 +69,8 @@
               float: right;
               font-family:Calibri;
 
+          }
+
+             .online_apps_header {
+              font-family:Calibri;
           }
