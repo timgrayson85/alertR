@@ -39,26 +39,28 @@ io.on('connection', function (socket) {
 
     });
 
-
+    // Alert all clients that a critical alert has been raised on an application.
     socket.on('critical-alert', function (app) {
         io.emit('critical-alert-raised', app);
         console.log('A critical alert has been raised on ' + app);
 
     });
 
+    // Alert all clients that a warning alert has been raised on an application.
     socket.on('warning-alert', function (app) {
         io.emit('warning-alert-raised', app);
         console.log('A warning alert has been raised on ' + app);
 
     });
 
+    // Alert all clients that a information alert has been raised on an application.
     socket.on('info-alert', function (app) {
         io.emit('info-alert-raised', app);
         console.log('A info alert has been raised on ' + app);
 
     });
 
-
+    // Alert all clients that a success alert has been raised on an application.
     socket.on('success-alert', function (app) {
         io.emit('success-alert-raised', app);
         console.log('A success alert has been raised on ' + app);

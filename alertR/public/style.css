@@ -43,14 +43,15 @@
                 list-style-type: none;
                 border:1px dotted black;
                 height: auto;
-                padding:10px;
+                padding:5px;
             }
 
-            #mySubs {
+            #mySubs li {
                 list-style-type: none;
                 border:1px dotted black;
                 height: auto;
-                padding:10px;
+                padding:5px;
+                border: 1px solid #ddd;
             }
 
           .child_div_1 {

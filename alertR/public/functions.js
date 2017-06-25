@@ -12,7 +12,7 @@ function addSubEvent(name) {
 
 // Raise a critical alert for an applicaiton.
 function raiseCriticalAlert(name) {
-     socket.emit('critical-alert', name);
+    socket.emit('critical-alert', name);
 };
 
 // Raise a warning alert for an applicaiton.
@@ -38,7 +38,7 @@ socket.on('critical-alert-raised', function changeStyle(name) {
     // Loop through all list items, and change the status of the application
     for (var i = 0; i < li.length; ++i) {
         if (li[i].innerText == name) {
-            li[i].style.color = '#f44336';
+            li[i].style.backgroundColor = '#f44336';
         }
     }
 });
@@ -50,7 +50,7 @@ socket.on('warning-alert-raised', function changeStyle(name) {
     // Loop through all list items, and change the status of the application
     for (var i = 0; i < li.length; ++i) {
         if (li[i].innerText == name) {
-            li[i].style.color = "#ff9800";
+            li[i].style.backgroundColor = "#ff9800";
         }
     }
 });
@@ -62,7 +62,7 @@ socket.on('info-alert-raised', function changeStyle(name) {
     // Loop through all list items, and change the status of the application
     for (var i = 0; i < li.length; ++i) {
         if (li[i].innerText == name) {
-            li[i].style.color = "#2196F3";
+            li[i].style.backgroundColor = "#2196F3";
         }
     }
 });
@@ -74,26 +74,40 @@ socket.on('success-alert-raised', function changeStyle(name) {
     // Loop through all list items, and change the status of the application
     for (var i = 0; i < li.length; ++i) {
         if (li[i].innerText == name) {
-            li[i].style.color = "#4CAF50";
+            li[i].style.backgroundColor = "#4CAF50";
         }
     }
 });
 
 
 
-
-
 socket.on('subscription-added', function addApplication(name) {
     // Add the clicked application to the list of my Apps.
     var ul = document.getElementById("mySubs");
+    var items = ul.getElementsByTagName('li');
     var li = document.createElement("li");
-    //var button = document.createElement("button");
-    //button.innerHTML = "asdasd";
-    //li.appendChild(button);
-    li.appendChild(document.createTextNode(name));
-    //li.addEventListener("click", function () { alert(name);})
-    ul.appendChild(li);
+    var found = 0;
+
+    // Check if the user is already subscribed before adding this application.
+    if (items.length > 0) {
+        for (var i = 0; i < items.length; i++) {
+            if (items[i].innerText == name) {
+                found++;
+            }
+        }
+    }
+
+         if (found > 0) {
+             alert('You are already subscribed to ' + name);
+        }
+         else {
+            // Add the application to the list.
+            li.appendChild(document.createTextNode(name));
+            ul.appendChild(li);
+        }
+        
 });
+
 
 
 socket.on('application-added', function addApplication(name) {
@@ -109,7 +123,7 @@ socket.on('application-added', function addApplication(name) {
 
     li.appendChild(button);
     ul.appendChild(li);
-    
+
 });
 
 
@@ -131,5 +145,3 @@ function searchApps() {
         }
     }
 }
-
-
