@@ -11,87 +11,85 @@ function addSubEvent(name) {
 };
 
 // Raise a critical alert for an applicaiton.
-function raiseCriticalAlert(name) {
+function raiseCriticalAlert(name, alertLevel) {
     socket.emit('critical-alert', name);
 };
 
 // Raise a warning alert for an applicaiton.
-function raiseWarningAlert(name) {
+function raiseWarningAlert(name, alertLevel) {
     socket.emit('warning-alert', name);
 };
 
 // Raise a information alert for an applicaiton.
-function raiseInfoAlert(name) {
+function raiseInfoAlert(name, alertLevel) {
     socket.emit('info-alert', name);
 };
 
 // Raise a success alert for an applicaiton.
-function raiseSuccessAlert(name) {
-    socket.emit('success-alert', name);
+function raiseSuccessAlert(name, alertLevel) {
+    socket.emit('success-alert', name, alertLevel);
 };
 
 
 socket.on('critical-alert-raised', function changeStyle(name) {
-    var ul = document.getElementById("mySubs");
-    var li = ul.getElementsByTagName('li');
+    var table = document.getElementById("mySubs");
+    var rows = table.getElementsByTagName('tr');
 
     // Loop through all list items, and change the status of the application
-    for (var i = 0; i < li.length; ++i) {
-        if (li[i].innerText == name) {
-            li[i].style.backgroundColor = '#f44336';
+    for (var i = 0; i < rows.length; ++i) {
+        if (rows[i].cells[0].textContent == name) {
+            rows[i].style.backgroundColor = '#f44336';
         }
     }
 });
 
 socket.on('warning-alert-raised', function changeStyle(name) {
-    var ul = document.getElementById("mySubs");
-    var li = ul.getElementsByTagName('li');
+    var table = document.getElementById("mySubs");
+    var rows = table.getElementsByTagName('tr');
 
     // Loop through all list items, and change the status of the application
-    for (var i = 0; i < li.length; ++i) {
-        if (li[i].innerText == name) {
-            li[i].style.backgroundColor = "#ff9800";
+    for (var i = 0; i < rows.length; ++i) {
+        if (rows[i].cells[0].textContent == name) {
+            rows[i].style.backgroundColor = '#ff9800';
         }
     }
 });
 
 socket.on('info-alert-raised', function changeStyle(name) {
-    var ul = document.getElementById("mySubs");
-    var li = ul.getElementsByTagName('li');
+    var table = document.getElementById("mySubs");
+    var rows = table.getElementsByTagName('tr');
 
     // Loop through all list items, and change the status of the application
-    for (var i = 0; i < li.length; ++i) {
-        if (li[i].innerText == name) {
-            li[i].style.backgroundColor = "#2196F3";
+    for (var i = 0; i < rows.length; ++i) {
+        if (rows[i].cells[0].textContent == name) {
+            rows[i].style.backgroundColor = '#2196F3';
         }
     }
 });
 
 socket.on('success-alert-raised', function changeStyle(name) {
-    var ul = document.getElementById("mySubs");
-    var li = ul.getElementsByTagName('li');
+    var table = document.getElementById("mySubs");
+    var rows = table.getElementsByTagName('tr');
 
     // Loop through all list items, and change the status of the application
-    for (var i = 0; i < li.length; ++i) {
-        if (li[i].innerText == name) {
-            li[i].style.backgroundColor = "#4CAF50";
+    for (var i = 0; i < rows.length; ++i) {
+        if (rows[i].cells[0].textContent == name) {
+            rows[i].style.backgroundColor = '#4CAF50';
         }
     }
 });
 
 
-
-socket.on('subscription-added', function addApplication(name) {
+socket.on('subscription-added', function addApplicationToSubs(name) {
     // Add the clicked application to the list of my Apps.
-    var ul = document.getElementById("mySubs");
-    var items = ul.getElementsByTagName('li');
-    var li = document.createElement("li");
+    var table = document.getElementById("mySubs");
+    var rows = table.getElementsByTagName('tr');
     var found = 0;
 
-    // Check if the user is already subscribed before adding this application.
-    if (items.length > 0) {
-        for (var i = 0; i < items.length; i++) {
-            if (items[i].innerText == name) {
+     //Check if the user is already subscribed before adding this application.
+    if (rows.length > 0) {
+        for (var i = 0; i < rows.length; i++) {
+            if (rows[i].cells[0].textContent == name) {
                 found++;
             }
         }
@@ -101,28 +99,34 @@ socket.on('subscription-added', function addApplication(name) {
              alert('You are already subscribed to ' + name);
         }
          else {
-            // Add the application to the list.
-            li.appendChild(document.createTextNode(name));
-            ul.appendChild(li);
-        }
-        
+             // Add the application to the top of the table.
+             var row = table.insertRow(-1);
+             var cell1 = row.insertCell(0);
+             var cell2 = row.insertCell(1);
+             var cell3 = row.insertCell(2);
+             
+             cell1.innerHTML = name;
+             cell2.innerHTML = "Critical";
+             cell3.innerHTML = "Alert Message"; 
+        }  
 });
 
 
 
 socket.on('application-added', function addApplication(name) {
     // Add the clicked application to the list of my Apps.
-    var ul = document.getElementById("myApps");
-    var li = document.createElement("li");
-    var items = ul.getElementsByTagName('li');
+    var table = document.getElementById("myApps");
+    var rows = table.getElementsByTagName('tr');
+
     var button = document.createElement("button");
+    button.innerHTML = "Raise Alert";
     var found = 0;
     
     // Check if the user is already subscribed before adding this application.
-    if (items.length > 0) {
-        for (var i = 0; i < items.length; i++) {
+    if (rows.length > 0) {
+        for (var i = 0; i < rows.length; i++) {
             // Substring required to trim off 'Raise Alert' text.
-            if (items[i].innerText.substring(0, name.length) == name) {
+            if (rows[i].cells[0].textContent == name) {
                 found++;
             }
         }
@@ -134,14 +138,20 @@ socket.on('application-added', function addApplication(name) {
     }
     else {
         // Add the application to the list.
-        button.innerHTML = "Raise Alert";
-        li.appendChild(document.createTextNode(name));
-        li.addEventListener("click", function () {
+        var row = table.insertRow(-1);
+
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+
+        cell1.innerHTML = name;
+        cell2.appendChild(button);
+        
+        cell2.addEventListener("click", function () {
             var myWindow = window.open("alertdialog.html?" + name, "", "width=300,height=500");
         })
 
-        li.appendChild(button);
-        ul.appendChild(li);
+
     }
   
 });

@@ -28,19 +28,19 @@
 
     <h3 id="myHeader"></h3>
 
-    <div class="alert" onclick="raiseCriticalAlert(url)">
+    <div class="alert" onclick="raiseCriticalAlert(url, 'Critical')">
         <strong>Critical!</strong> Something has gone terribly wrong.
     </div>
     
-    <div class="alert warning"  onclick="raiseWarningAlert(url)">
+    <div class="alert warning"  onclick="raiseWarningAlert(url, 'Warning')">
         <strong>Warning!</strong> Something has gone wrong but there is no user impact yet.
     </div>
 
-    <div class="alert info"  onclick="raiseInfoAlert(url)">
+    <div class="alert info"  onclick="raiseInfoAlert(url, 'Information')">
         <strong>Info!</strong> Non-urgent information.
     </div>
 
-    <div class="alert success"  onclick="raiseSuccessAlert(url)">
+    <div class="alert success"  onclick="raiseSuccessAlert(url, 'Success')">
         <strong>OK!</strong> Everything is ok now.
     </div>
 
