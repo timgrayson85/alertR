@@ -11,70 +11,83 @@ function addSubEvent(name) {
 };
 
 // Raise a critical alert for an applicaiton.
-function raiseCriticalAlert(name, alertLevel) {
-    socket.emit('critical-alert', name);
+function raiseCriticalAlert(name, alertLevel, alertMessage) {
+    //alert(alertText);
+    socket.emit('critical-alert', { Name: name, AlertLevel: alertLevel, AlertMessage: alertMessage });
 };
 
 // Raise a warning alert for an applicaiton.
-function raiseWarningAlert(name, alertLevel) {
-    socket.emit('warning-alert', name);
+function raiseWarningAlert(name, alertLevel, alertMessage) {
+    socket.emit('warning-alert', { Name: name, AlertLevel: alertLevel, AlertMessage: alertMessage });
 };
 
 // Raise a information alert for an applicaiton.
-function raiseInfoAlert(name, alertLevel) {
-    socket.emit('info-alert', name);
+function raiseInfoAlert(name, alertLevel, alertMessage) {
+    socket.emit('info-alert', { Name: name, AlertLevel: alertLevel, AlertMessage: alertMessage });
 };
 
 // Raise a success alert for an applicaiton.
-function raiseSuccessAlert(name, alertLevel) {
-    socket.emit('success-alert', name, alertLevel);
+function raiseSuccessAlert(name, alertLevel, alertMessage) {
+    socket.emit('success-alert', { Name: name, AlertLevel: alertLevel, AlertMessage: alertMessage });
 };
 
 
-socket.on('critical-alert-raised', function changeStyle(name) {
+socket.on('critical-alert-raised', function changeStyle(data) {
     var table = document.getElementById("mySubs");
     var rows = table.getElementsByTagName('tr');
 
+    //alert(data.alertLevel);
+
+
     // Loop through all list items, and change the status of the application
     for (var i = 0; i < rows.length; ++i) {
-        if (rows[i].cells[0].textContent == name) {
+        if (rows[i].cells[0].textContent == data.Name) {
             rows[i].style.backgroundColor = '#f44336';
+            rows[i].cells[1].textContent = data.AlertLevel;
+            rows[i].cells[2].textContent = data.AlertMessage;
+
         }
     }
 });
 
-socket.on('warning-alert-raised', function changeStyle(name) {
+socket.on('warning-alert-raised', function changeStyle(data) {
     var table = document.getElementById("mySubs");
     var rows = table.getElementsByTagName('tr');
 
     // Loop through all list items, and change the status of the application
     for (var i = 0; i < rows.length; ++i) {
-        if (rows[i].cells[0].textContent == name) {
+        if (rows[i].cells[0].textContent == data.Name) {
             rows[i].style.backgroundColor = '#ff9800';
+            rows[i].cells[1].textContent = data.AlertLevel;
+            rows[i].cells[2].textContent = data.AlertMessage;
         }
     }
 });
 
-socket.on('info-alert-raised', function changeStyle(name) {
+socket.on('info-alert-raised', function changeStyle(data) {
     var table = document.getElementById("mySubs");
     var rows = table.getElementsByTagName('tr');
 
     // Loop through all list items, and change the status of the application
     for (var i = 0; i < rows.length; ++i) {
-        if (rows[i].cells[0].textContent == name) {
+        if (rows[i].cells[0].textContent == data.Name) {
             rows[i].style.backgroundColor = '#2196F3';
+            rows[i].cells[1].textContent = data.AlertLevel;
+            rows[i].cells[2].textContent = data.AlertMessage;
         }
     }
 });
 
-socket.on('success-alert-raised', function changeStyle(name) {
+socket.on('success-alert-raised', function changeStyle(data) {
     var table = document.getElementById("mySubs");
     var rows = table.getElementsByTagName('tr');
 
     // Loop through all list items, and change the status of the application
     for (var i = 0; i < rows.length; ++i) {
-        if (rows[i].cells[0].textContent == name) {
+        if (rows[i].cells[0].textContent == data.Name) {
             rows[i].style.backgroundColor = '#4CAF50';
+            rows[i].cells[1].textContent = data.AlertLevel;
+            rows[i].cells[2].textContent = data.AlertMessage;
         }
     }
 });
@@ -106,8 +119,8 @@ socket.on('subscription-added', function addApplicationToSubs(name) {
              var cell3 = row.insertCell(2);
              
              cell1.innerHTML = name;
-             cell2.innerHTML = "Critical";
-             cell3.innerHTML = "Alert Message"; 
+             cell2.innerHTML = "";
+             cell3.innerHTML = ""; 
         }  
 });
 

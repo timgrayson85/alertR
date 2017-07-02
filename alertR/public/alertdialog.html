@@ -28,21 +28,24 @@
 
     <h3 id="myHeader"></h3>
 
-    <div class="alert" onclick="raiseCriticalAlert(url, 'Critical')">
+    <div class="alert" onclick="raiseCriticalAlert(url, 'Critical', alertText.value)">
         <strong>Critical!</strong> Something has gone terribly wrong.
     </div>
     
-    <div class="alert warning"  onclick="raiseWarningAlert(url, 'Warning')">
+    <div class="alert warning"  onclick="raiseWarningAlert(url, 'Warning', alertText.value)">
         <strong>Warning!</strong> Something has gone wrong but there is no user impact yet.
     </div>
 
-    <div class="alert info"  onclick="raiseInfoAlert(url, 'Information')">
+    <div class="alert info"  onclick="raiseInfoAlert(url, 'Information', alertText.value)">
         <strong>Info!</strong> Non-urgent information.
     </div>
 
-    <div class="alert success"  onclick="raiseSuccessAlert(url, 'Success')">
+    <div class="alert success"  onclick="raiseSuccessAlert(url, 'Success', alertText.value)">
         <strong>OK!</strong> Everything is ok now.
     </div>
+
+    <h3>Alert Text (Optional)</h3>
+        <input type="text" id="myInput" style="display:table-cell; width:100%" />
 
 </body>
 </html>
@@ -51,5 +54,7 @@
     url = url.replace("?", ''); // remove the ?
     myHeader.innerText = "Raise new alert on " + url;
 
+    // Get the alert text.
+    var alertText = document.getElementById("myInput");
 
 </script>
