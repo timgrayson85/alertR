@@ -35,6 +35,7 @@
     <Content Include="public\alertdialog.html" />
     <Content Include="index.html" />
     <Content Include="package.json" />
+    <Content Include="public\alertRthumb.png" />
     <Content Include="public\style.css" />
     <Content Include="README.md" />
   </ItemGroup>
