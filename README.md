@@ -2,7 +2,7 @@
 
 <b>Get Started</b>
 
-1. Download Node.js
+1. Download Node.js and npm package manager
 
 https://nodejs.org/en/download/
 
@@ -26,7 +26,7 @@ $node app.js
 
 5. Open a browser and point to <code>http://localhost:8080</code>
 
-6. Let your colleagues know when something bad has happened:
+6. Let your colleagues know when something bad has happened
 
 
 
