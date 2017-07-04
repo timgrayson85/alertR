@@ -26,6 +26,9 @@ $node app.js
 
 5. Open a browser and point to <code>http://localhost:8080</code>
 
+6. Let your colleagues know when something bad has happened:
+
+
 
 ![Alt text](/alertR/public/alertRthumb.png?raw=true "Screenshot of the main page")
 
