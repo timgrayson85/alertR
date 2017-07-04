@@ -4,7 +4,7 @@
 
 1. Download Node.js and npm package manager
 
-https://nodejs.org/en/download/
+<code>https://nodejs.org/en/download/</code>
 
 2. Install socket.io
 
