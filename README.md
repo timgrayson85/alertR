@@ -17,3 +17,12 @@ $ npm install socket.io
 ```
 $npm install --save express@4.15.2
 ```
+
+4. To start the application:
+
+```
+$node app.js
+```
+
+5. Open a browser and point to <code>http://localhost:8080</code>
+
