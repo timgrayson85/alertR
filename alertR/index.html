@@ -13,21 +13,38 @@
     <div id="onlineApps" style="border:1px dotted black;padding:10px;width:auto">
         <input type="text" id="myInput" onkeyup="searchApps()" placeholder="Search for online applications..">
 
-
-        <!-- Needs improvement -->
-        <ul id="myUL">
-            <li><a href="#" class="header">Front Office</a></li>
-            <li><div><a href="#">TradeX</a><button onclick="addAppEvent('TradeX')">Add to My Applications</button><button onclick="addSubEvent('TradeX')">Subscribe</button></div></li>
-            <li><div><a href="#">Booker3000</a><button onclick="addAppEvent('Booker3000')">Add to My Applications</button><button onclick="addSubEvent('Booker3000')">Subscribe</button></div></li>
-
-            <li><a href="#" class="header">Middle Office</a></li>
-            <li><div><a href="#">LegalChecker</a><button onclick="addAppEvent('LegalChecker')">Add to My Applications</button><button onclick="addSubEvent('LegalChecker')">Subscribe</button></div></li>
-            <li><div><a href="#">DataFaker</a><button onclick="addAppEvent('DataFaker')">Add to My Applications</button><button onclick="addSubEvent('DataFaker')">Subscribe</button></div></li>
-
-            <li><a href="#" class="header">Back Office</a></li>
-            <li><div><a href="#">RiskAnalyser</a><button onclick="addAppEvent('RiskAnalyser')">Add to My Applications</button><button onclick="addSubEvent('RiskAnalyser')">Subscribe</button></div></li>
-            <li><div><a href="#">Accounter</a><button onclick="addAppEvent('Accounter')">Add to My Applications</button><button onclick="addSubEvent('Accounter')">Subscribe</button></div></li>
-        </ul>
+        <table id="myTable">
+            <tr>
+                <td>TradeX</td>
+                <td><button onclick="addAppEvent('TradeX')">Add to My Applications</button></td>
+                <td><button onclick="addSubEvent('TradeX')">Subscribe</button></td>
+            </tr>
+            <tr>
+                <td>Booker3000</td>
+                <td><button onclick="addAppEvent('Booker3000')">Add to My Applications</button></td>
+                <td><button onclick="addSubEvent('Booker3000')">Subscribe</button></td>
+            </tr>
+            <tr>
+                <td>LegalChecker</td>
+                <td><button onclick="addAppEvent('LegalChecker')">Add to My Applications</button></td>
+                <td><button onclick="addSubEvent('LegalChecker')">Subscribe</button></td>
+            </tr>
+            <tr>
+                <td>DataFaker</td>
+                <td><button onclick="addAppEvent('DataFaker')">Add to My Applications</button></td>
+                <td><button onclick="addSubEvent('DataFaker')">Subscribe</button></td>
+            </tr>
+            <tr>
+                <td>RiskAnalyser</td>
+                <td><button onclick="addAppEvent('RiskAnalyser')">Add to My Applications</button></td>
+                <td><button onclick="addSubEvent('RiskAnalyser')">Subscribe</button></td>
+            </tr>
+            <tr>
+                <td>Accounter</td>
+                <td><button onclick="addAppEvent('Accounter')">Add to My Applications</button></td>
+                <td><button onclick="addSubEvent('Accounter')">Subscribe</button></td>
+            </tr>
+        </table>
     </div>
     <br />
 

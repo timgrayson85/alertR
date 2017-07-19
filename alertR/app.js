@@ -5,6 +5,7 @@ var io = require('socket.io')(http);
 
 var port = process.env.PORT || 3000;
 
+
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/index.html');
 
@@ -20,16 +21,16 @@ io.on('connection', function (socket) {
     // Get a unique identifer for this client.
     var ip = socket.conn.remoteAddress;
     console.log('User: ' + ip + ' has connected');
-        
+
     // Create a new room for this client.
     socket.join(ip + '-room');
-        
+
     // Listen for an 'addApplication' event then push it to all sockets assigned to the client. 
     // This is necessary in case the user has multiple tabs or browsers open.
     socket.on('add-application', function (app) {
-        io.to(ip+'-room').emit('application-added', app);
+        io.to(ip + '-room').emit('application-added', app);
         console.log('User ' + ip + ' added: ' + app + ' to their apps');
-               
+
     });
 
     // Listen for an 'add-subscription' event then push it to all sockets assigned to the client.
@@ -69,7 +70,7 @@ io.on('connection', function (socket) {
     });
 
 
-        
+
     socket.on('disconnect', function () {
         console.log('user disconnected');
     });
@@ -79,5 +80,7 @@ io.on('connection', function (socket) {
 
 
 http.listen(port, function () {
-    console.log('listening on *:8080');
+    // Put a friendly message on the terminal
+    console.log('Server running at http://127.0.0.1:' + port + '/');
+
 });

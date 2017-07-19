@@ -9,11 +9,11 @@
         margin-bottom: 12px;
     }
 
-    #myUL{
+    /*#myUL{
         list-style-type: none;
         padding: 0;
         margin: 0; 
-    }
+    }*/
 
         #myUL li a {    
             border: 1px solid #ddd;
