@@ -19,9 +19,10 @@ app.use(express.static('./public'));
 var con = mysql.createConnection({
     host: "localhost",
     user: "tim",
-    password: "******",
+    password: "*******",
     database: "mydb"
 });
+
 
 
 // Set up Database.
@@ -63,12 +64,13 @@ con.connect(function (err) {
             console.log("Number of records inserted: " + result.affectedRows);
         });
 
-    con.query("CREATE TABLE IF NOT EXISTS History (ApplicationID INT, AlertID INT, Date DATETIME)", function (err, result) {
+    con.query("CREATE TABLE IF NOT EXISTS History (ApplicationName VARCHAR(45) , AlertName VARCHAR(45), Date DATETIME)", function (err, result) {
             if (err) throw err;
             console.log("History table created");
         });   
 
 });
+
 
 
 
@@ -97,36 +99,21 @@ io.on('connection', function (socket) {
 
     });
 
-    // Alert all clients that a critical alert has been raised on an application.
-    socket.on('critical-alert', function (json) {
-        io.emit('critical-alert-raised', json);
-        console.log('A critical alert has been raised on ' + json.Name);
+
+    // Alert all clients that an alert has been raised on an application.
+    socket.on('alert-raised', function (json) {
+        // Write alert to database.
+        con.query("INSERT INTO History (ApplicationName, AlertName, Date) VALUES ('" + json.Name + "','" + json.AlertLevel + "', NOW())", function (err, result) {
+                if (err) throw err;
+                console.log("Result: " + result);
+            });
+        
+        io.emit('alert-raised', json);
+        console.log('A ' + json.affectedRows + ' alert has been raised on ' + json.Name);
 
     });
 
-    // Alert all clients that a warning alert has been raised on an application.
-    socket.on('warning-alert', function (json) {
-        io.emit('warning-alert-raised', json);
-        console.log('A warning alert has been raised on ' + json.Name);
-
-    });
-
-    // Alert all clients that a information alert has been raised on an application.
-    socket.on('info-alert', function (json) {
-        io.emit('info-alert-raised', json);
-        console.log('A info alert has been raised on ' + json.Name);
-
-    });
-
-    // Alert all clients that a success alert has been raised on an application.
-    socket.on('success-alert', function (json) {
-        io.emit('success-alert-raised', json);
-        console.log('A success alert has been raised on ' + json.Name);
-
-    });
-
-
-
+    
     socket.on('disconnect', function () {
         console.log('user disconnected');
     });
