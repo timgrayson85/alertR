@@ -30,7 +30,3 @@ $node app.js
 
 ![demo](http://g.recordit.co/cziKJwlF9h.gif)
 
-![Alt text](/alertR/public/alertRthumb.png?raw=true "Screenshot of the main page")
-
-
-
