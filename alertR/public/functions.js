@@ -24,11 +24,25 @@ socket.on('alert-raised', function changeStyle(data) {
     for (var i = 0; i < rows.length; ++i) {
         if (rows[i].cells[0].textContent == data.Name) {
 
+            switch (data.AlertLevel) {
+                case "Critical":
+                    rows[i].style.backgroundColor = '#f44336';
+                    break;
+                case "Warning":
+                    rows[i].style.backgroundColor = '#ff9800';
+                    break;
+                case "Information":
+                    rows[i].style.backgroundColor = '#2196F3';
+                    break;
+                case "Success":
+                    rows[i].style.backgroundColor = '#4CAF50';
+                    break;
+            }
 
-            // Need to set colour according to severity.
-            rows[i].style.backgroundColor = '#f44336';
             rows[i].cells[1].textContent = data.AlertLevel;
             rows[i].cells[2].textContent = data.AlertMessage;
+            rows[i].cells[3].textContent = Date.now();
+
 
         }
     }
@@ -59,10 +73,12 @@ socket.on('subscription-added', function addApplicationToSubs(name) {
              var cell1 = row.insertCell(0);
              var cell2 = row.insertCell(1);
              var cell3 = row.insertCell(2);
+             var cell4 = row.insertCell(3);
              
              cell1.innerHTML = name;
              cell2.innerHTML = "";
              cell3.innerHTML = ""; 
+             cell4.innerHTML = ""; 
         }  
 });
 

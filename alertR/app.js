@@ -19,7 +19,7 @@ app.use(express.static('./public'));
 var con = mysql.createConnection({
     host: "localhost",
     user: "tim",
-    password: "*******",
+    password: "Penhorse2",
     database: "mydb"
 });
 
@@ -82,6 +82,8 @@ io.on('connection', function (socket) {
 
     // Create a new room for this client.
     socket.join(ip + '-room');
+
+    // TO DO: Get the latest state of applications.
 
     // Listen for an 'addApplication' event then push it to all sockets assigned to the client. 
     // This is necessary in case the user has multiple tabs or browsers open.
