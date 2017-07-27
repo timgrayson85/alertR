@@ -28,9 +28,5 @@ $node app.js
 
 6. Let your colleagues know when something bad has happened:
 
-
-
-![Alt text](/alertR/public/alertRthumb.png?raw=true "Screenshot of the main page")
-
-
+![demo](http://g.recordit.co/cziKJwlF9h.gif)
 
