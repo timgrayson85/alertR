@@ -10,7 +10,7 @@ function addSubEvent(name) {
     socket.emit('add-subscription', name);
 };
 
-// Raise an alert for an applicaiton.
+// Emit an event when a user raises an alert on an application.
 function raiseAlert(name, alertLevel, alertMessage) {
     socket.emit('alert-raised', { Name: name, AlertLevel: alertLevel, AlertMessage: alertMessage });
 };
@@ -41,15 +41,16 @@ socket.on('alert-raised', function changeStyle(data) {
 
             rows[i].cells[1].textContent = data.AlertLevel;
             rows[i].cells[2].textContent = data.AlertMessage;
-            rows[i].cells[3].textContent = Date.now();
 
+            var d = new Date();
+            rows[i].cells[3].textContent = d.toLocaleString("en-GB");
 
         }
     }
 });
 
 
-socket.on('subscription-added', function addApplicationToSubs(name) {
+socket.on('subscription-added', function addApplicationToSubs(data) {
     // Add the clicked application to the list of my Apps.
     var table = document.getElementById("mySubs");
     var rows = table.getElementsByTagName('tr');
@@ -58,14 +59,14 @@ socket.on('subscription-added', function addApplicationToSubs(name) {
      //Check if the user is already subscribed before adding this application.
     if (rows.length > 0) {
         for (var i = 0; i < rows.length; i++) {
-            if (rows[i].cells[0].textContent == name) {
+            if (rows[i].cells[0].textContent == data.Name) {
                 found++;
             }
         }
     }
 
          if (found > 0) {
-             alert('You are already subscribed to ' + name);
+             alert('You are already subscribed to ' + data.Name);
         }
          else {
              // Add the application to the top of the table.
@@ -75,8 +76,8 @@ socket.on('subscription-added', function addApplicationToSubs(name) {
              var cell3 = row.insertCell(2);
              var cell4 = row.insertCell(3);
              
-             cell1.innerHTML = name;
-             cell2.innerHTML = "";
+             cell1.innerHTML = data.Name;
+             cell2.innerHTML = data.AlertLevel;
              cell3.innerHTML = ""; 
              cell4.innerHTML = ""; 
         }  
@@ -102,8 +103,7 @@ socket.on('application-added', function addApplication(name) {
             }
         }
     }
-
-
+    
     if (found > 0) {
         alert('You already have ' + name + ' in your applications');
     }
@@ -121,8 +121,6 @@ socket.on('application-added', function addApplication(name) {
         cell2.addEventListener("click", function () {
             var myWindow = window.open("alertdialog.html?" + name, "", "width=300,height=500");
         })
-
-
     }
   
 });
@@ -145,4 +143,5 @@ function searchApps() {
             li[i].style.display = "none";
         }
     }
+
 }

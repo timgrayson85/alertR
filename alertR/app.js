@@ -9,20 +9,20 @@ var port = process.env.PORT || 3000;
 
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/index.html');
-
 });
+
 
 // Make JavaScript and CSS files available.
 app.use(express.static('./public'));
+
 
 // Connect to MySQL Database.
 var con = mysql.createConnection({
     host: "localhost",
     user: "tim",
-    password: "Penhorse2",
+    password: "*****",
     database: "mydb"
 });
-
 
 
 // Set up Database.
@@ -68,10 +68,7 @@ con.connect(function (err) {
             if (err) throw err;
             console.log("History table created");
         });   
-
 });
-
-
 
 
 io.on('connection', function (socket) {
@@ -83,9 +80,8 @@ io.on('connection', function (socket) {
     // Create a new room for this client.
     socket.join(ip + '-room');
 
-    // TO DO: Get the latest state of applications.
-
-    // Listen for an 'addApplication' event then push it to all sockets assigned to the client. 
+   
+    // Listen for an 'add-Application' event then push it to all sockets assigned to the client. 
     // This is necessary in case the user has multiple tabs or browsers open.
     socket.on('add-application', function (app) {
         io.to(ip + '-room').emit('application-added', app);
@@ -96,22 +92,32 @@ io.on('connection', function (socket) {
     // Listen for an 'add-subscription' event then push it to all sockets assigned to the client.
     // This is necessary in case the user has multiple tabs or browsers open.
     socket.on('add-subscription', function (app) {
-        io.to(ip + '-room').emit('subscription-added', app);
+
+    //Get the current status of this applicaion.
+    con.query("select h.ApplicationName, h.AlertName, h.Date from mydb.history h inner join " +
+        "(select ApplicationName, max(Date) as MaxDate from mydb.history group by ApplicationName) " +
+        "an on h.ApplicationName = an.ApplicationName and h.Date = an.MaxDate and an.ApplicationName = '" + app + "'", function (err, result, fields) {
+            if (err) throw err;
+            var alertLevel = result[0].AlertName;    
+
+        io.to(ip + '-room').emit('subscription-added', { Name: app, AlertLevel: alertLevel });
         console.log('User ' + ip + ' subscribed to: ' + app);
 
+        });
     });
 
 
     // Alert all clients that an alert has been raised on an application.
     socket.on('alert-raised', function (json) {
+
         // Write alert to database.
         con.query("INSERT INTO History (ApplicationName, AlertName, Date) VALUES ('" + json.Name + "','" + json.AlertLevel + "', NOW())", function (err, result) {
                 if (err) throw err;
-                console.log("Result: " + result);
+                console.log("Number of records inserted: " + result.affectedRows);
             });
         
         io.emit('alert-raised', json);
-        console.log('A ' + json.affectedRows + ' alert has been raised on ' + json.Name);
+        console.log(json.AlertLevel + ' alert has been raised on ' + json.Name);
 
     });
 
@@ -119,9 +125,8 @@ io.on('connection', function (socket) {
     socket.on('disconnect', function () {
         console.log('user disconnected');
     });
+
 });
-
-
 
 
 http.listen(port, function () {
