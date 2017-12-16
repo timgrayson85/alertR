@@ -3,8 +3,10 @@ var app = express();
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 var mysql = require('mysql');
+var ip = require('ip');
 
 var port = process.env.PORT || 3000;
+
 
 
 app.get('/', function (req, res) {
@@ -20,7 +22,7 @@ app.use(express.static('./public'));
 var con = mysql.createConnection({
     host: "localhost",
     user: "tim",
-    password: "******", // Replace me.
+    password: "tim", // Replace me.
     database: "mydb"
 });
 
@@ -101,7 +103,7 @@ io.on('connection', function (socket) {
                 var alertLevel = result[0].AlertName;
                 var alertDate = result[0].Date;
 
-                io.to(ip + '-room').emit('subscription-added', { Name: app, AlertLevel: alertLevel, AlertDate: alertDate});
+                io.to(ip + '-room').emit('subscription-added', { Name: app, AlertLevel: alertLevel, AlertDate: alertDate });
                 console.log('User ' + ip + ' subscribed to: ' + app);
 
             });
@@ -132,6 +134,5 @@ io.on('connection', function (socket) {
 
 http.listen(port, function () {
     // Put a friendly message on the terminal
-    console.log('Server running at http://127.0.0.1:' + port + '/');
-
+    console.log('Server running at http://' + ip.address() +':' + port + '/');
 });
