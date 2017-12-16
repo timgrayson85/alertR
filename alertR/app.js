@@ -20,7 +20,7 @@ app.use(express.static('./public'));
 var con = mysql.createConnection({
     host: "localhost",
     user: "tim",
-    password: "Penhorse2", // Replace me.
+    password: "******", // Replace me.
     database: "mydb"
 });
 
