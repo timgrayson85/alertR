@@ -20,7 +20,7 @@ app.use(express.static('./public'));
 var con = mysql.createConnection({
     host: "localhost",
     user: "tim",
-    password: "*****",
+    password: "****", // Replace me.
     database: "mydb"
 });
 
@@ -30,44 +30,44 @@ con.connect(function (err) {
     if (err) throw err;
     console.log("Connected!");
     con.query("CREATE DATABASE IF NOT EXISTS mydb", function (err, result) {
-            if (err) throw err;
-            console.log("Database created");
-        });
+        if (err) throw err;
+        console.log("Database created");
+    });
 
     con.query("CREATE TABLE IF NOT EXISTS Alert (idAlert INT AUTO_INCREMENT PRIMARY KEY, Name VARCHAR(45), Severity VARCHAR(45), Colour VARCHAR(45))", function (err, result) {
-            if (err) throw err;
-            console.log("Alert table created");
-        });
+        if (err) throw err;
+        console.log("Alert table created");
+    });
 
     con.query("DELETE FROM Alert", function (err, result) {
-            if (err) throw err;
-            console.log("Number of records deleted: " + result.affectedRows);
-        });
+        if (err) throw err;
+        console.log("Number of records deleted: " + result.affectedRows);
+    });
 
     con.query("INSERT INTO Alert (idAlert, Name, Severity, Colour) VALUES (1,'Critical', 'Critical', 'Red'),(2,'Warning', 'Warning', 'Amber'),(3,'Info', 'Info', 'Blue'),(4,'OK', 'OK', 'Green') ", function (err, result) {
-            if (err) throw err;
-            console.log("Number of records inserted: " + result.affectedRows);
-        });
+        if (err) throw err;
+        console.log("Number of records inserted: " + result.affectedRows);
+    });
 
     con.query("CREATE TABLE IF NOT EXISTS Applications (idApplications INT AUTO_INCREMENT PRIMARY KEY, Name VARCHAR(45), Location VARCHAR(45))", function (err, result) {
-            if (err) throw err;
-            console.log("Applications table created");
-        });
+        if (err) throw err;
+        console.log("Applications table created");
+    });
 
     con.query("DELETE FROM Applications", function (err, result) {
-            if (err) throw err;
-            console.log("Number of records deleted: " + result.affectedRows);
-        });
+        if (err) throw err;
+        console.log("Number of records deleted: " + result.affectedRows);
+    });
 
     con.query("INSERT INTO Applications (idApplications, Name, Location) VALUES (1,'TradeX', 'Front Office'),(2,'Book3000', 'Front Office'),(3,'LegalCheck', 'Middle Office'),(4,'DataFaker', 'Middle Office'),(5,'RiskAnalyser', 'Back Office'),(6,'Accounter', 'Back Office')", function (err, result) {
-            if (err) throw err;
-            console.log("Number of records inserted: " + result.affectedRows);
-        });
+        if (err) throw err;
+        console.log("Number of records inserted: " + result.affectedRows);
+    });
 
     con.query("CREATE TABLE IF NOT EXISTS History (ApplicationName VARCHAR(45) , AlertName VARCHAR(45), Date DATETIME)", function (err, result) {
-            if (err) throw err;
-            console.log("History table created");
-        });   
+        if (err) throw err;
+        console.log("History table created");
+    });
 });
 
 
@@ -80,7 +80,7 @@ io.on('connection', function (socket) {
     // Create a new room for this client.
     socket.join(ip + '-room');
 
-   
+
     // Listen for an 'add-Application' event then push it to all sockets assigned to the client. 
     // This is necessary in case the user has multiple tabs or browsers open.
     socket.on('add-application', function (app) {
@@ -93,17 +93,17 @@ io.on('connection', function (socket) {
     // This is necessary in case the user has multiple tabs or browsers open.
     socket.on('add-subscription', function (app) {
 
-    //Get the current status of this applicaion.
-    con.query("select h.ApplicationName, h.AlertName, h.Date from mydb.history h inner join " +
-        "(select ApplicationName, max(Date) as MaxDate from mydb.history group by ApplicationName) " +
-        "an on h.ApplicationName = an.ApplicationName and h.Date = an.MaxDate and an.ApplicationName = '" + app + "'", function (err, result, fields) {
-            if (err) throw err;
-            var alertLevel = result[0].AlertName;    
+        //Get the current status of this applicaion.
+        con.query("select h.ApplicationName, h.AlertName, h.Date from mydb.history h inner join " +
+            "(select ApplicationName, max(Date) as MaxDate from mydb.history group by ApplicationName) " +
+            "an on h.ApplicationName = an.ApplicationName and h.Date = an.MaxDate and an.ApplicationName = '" + app + "'", function (err, result, fields) {
+                if (err) throw err;
+                var alertLevel = result[0].AlertName;
 
-        io.to(ip + '-room').emit('subscription-added', { Name: app, AlertLevel: alertLevel });
-        console.log('User ' + ip + ' subscribed to: ' + app);
+                io.to(ip + '-room').emit('subscription-added', { Name: app, AlertLevel: alertLevel });
+                console.log('User ' + ip + ' subscribed to: ' + app);
 
-        });
+            });
     });
 
 
@@ -112,16 +112,16 @@ io.on('connection', function (socket) {
 
         // Write alert to database.
         con.query("INSERT INTO History (ApplicationName, AlertName, Date) VALUES ('" + json.Name + "','" + json.AlertLevel + "', NOW())", function (err, result) {
-                if (err) throw err;
-                console.log("Number of records inserted: " + result.affectedRows);
-            });
-        
+            if (err) throw err;
+            console.log("Number of records inserted: " + result.affectedRows);
+        });
+
         io.emit('alert-raised', json);
         console.log(json.AlertLevel + ' alert has been raised on ' + json.Name);
 
     });
 
-    
+
     socket.on('disconnect', function () {
         console.log('user disconnected');
     });
