@@ -56,7 +56,7 @@ socket.on('subscription-added', function addApplicationToSubs(data) {
     var rows = table.getElementsByTagName('tr');
     var found = 0;
 
-     //Check if the user is already subscribed before adding this application.
+    //Check if the user is already subscribed before adding this application.
     if (rows.length > 0) {
         for (var i = 0; i < rows.length; i++) {
             if (rows[i].cells[0].textContent == data.Name) {
@@ -65,22 +65,45 @@ socket.on('subscription-added', function addApplicationToSubs(data) {
         }
     }
 
-         if (found > 0) {
-             alert('You are already subscribed to ' + data.Name);
+    if (found > 0) {
+        alert('You are already subscribed to ' + data.Name);
+    }
+    else {
+        // Add the application to the top of the table.
+        var row = table.insertRow(-1);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+
+        cell1.innerHTML = data.Name;
+        cell2.innerHTML = data.AlertLevel;
+
+        // Repace 'undefined' with an empty string.
+        if (data.AlertMessage == undefined) {
+            cell3.innerHTML = "";
         }
-         else {
-             // Add the application to the top of the table.
-             var row = table.insertRow(-1);
-             var cell1 = row.insertCell(0);
-             var cell2 = row.insertCell(1);
-             var cell3 = row.insertCell(2);
-             var cell4 = row.insertCell(3);
-             
-             cell1.innerHTML = data.Name;
-             cell2.innerHTML = data.AlertLevel;
-             cell3.innerHTML = ""; 
-             cell4.innerHTML = ""; 
-        }  
+        else {
+            cell3.innerHTML = data.AlertMessage;
+        }
+
+        cell4.innerHTML = data.AlertDate;
+
+        switch (data.AlertLevel) {
+            case "Critical":
+                row.style.backgroundColor = '#f44336';
+                break;
+            case "Warning":
+                row.style.backgroundColor = '#ff9800';
+                break;
+            case "Information":
+                row.style.backgroundColor = '#2196F3';
+                break;
+            case "Success":
+                row.style.backgroundColor = '#4CAF50';
+                break;
+        }
+    }
 });
 
 
@@ -93,7 +116,7 @@ socket.on('application-added', function addApplication(name) {
     var button = document.createElement("button");
     button.innerHTML = "Raise Alert";
     var found = 0;
-    
+
     // Check if the user is already subscribed before adding this application.
     if (rows.length > 0) {
         for (var i = 0; i < rows.length; i++) {
@@ -103,7 +126,7 @@ socket.on('application-added', function addApplication(name) {
             }
         }
     }
-    
+
     if (found > 0) {
         alert('You already have ' + name + ' in your applications');
     }
@@ -117,12 +140,12 @@ socket.on('application-added', function addApplication(name) {
 
         cell1.innerHTML = name;
         cell2.appendChild(button);
-        
+
         cell2.addEventListener("click", function () {
             var myWindow = window.open("alertdialog.html?" + name, "", "width=300,height=500");
         })
     }
-  
+
 });
 
 

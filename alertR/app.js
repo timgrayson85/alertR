@@ -20,7 +20,7 @@ app.use(express.static('./public'));
 var con = mysql.createConnection({
     host: "localhost",
     user: "tim",
-    password: "****", // Replace me.
+    password: "Penhorse2", // Replace me.
     database: "mydb"
 });
 
@@ -99,8 +99,9 @@ io.on('connection', function (socket) {
             "an on h.ApplicationName = an.ApplicationName and h.Date = an.MaxDate and an.ApplicationName = '" + app + "'", function (err, result, fields) {
                 if (err) throw err;
                 var alertLevel = result[0].AlertName;
+                var alertDate = result[0].Date;
 
-                io.to(ip + '-room').emit('subscription-added', { Name: app, AlertLevel: alertLevel });
+                io.to(ip + '-room').emit('subscription-added', { Name: app, AlertLevel: alertLevel, AlertDate: alertDate});
                 console.log('User ' + ip + ' subscribed to: ' + app);
 
             });

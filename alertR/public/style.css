@@ -1,4 +1,5 @@
 ﻿#myInput {
+        border-radius: 25px;
         background-image: url('/css/searchicon.png'); 
         background-position: 10px 12px; 
         background-repeat: no-repeat; 
@@ -16,9 +17,9 @@
     }*/
 
         #myUL li a {    
-            border: 1px solid #ddd;
+            border: 1px solid rgb(17, 13, 13);
             margin-top: -1px;
-            background-color: #f6f6f6;
+            background-color: #757070ec;
             padding: 1px;
             text-decoration: none;
             width: auto;
