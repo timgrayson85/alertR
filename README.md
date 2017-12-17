@@ -18,15 +18,21 @@ $ npm install socket.io
 $npm install --save express@4.15.2
 ```
 
-4. To start the application:
+4. Install mySQL:
+
+```
+$npm install mysql
+```
+
+5. To start the application:
 
 ```
 $node app.js
 ```
 
-5. Open a browser and point to <code>http://localhost:8080</code>
+6. Open a browser and point to <code>http://localhost:8080</code>
 
-6. Let your colleagues know when something bad has happened:
+7. Let your colleagues know when something bad has happened:
 
 ![demo](http://g.recordit.co/cziKJwlF9h.gif)
 
