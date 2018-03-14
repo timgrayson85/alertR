@@ -96,7 +96,7 @@ io.on('connection', function (socket) {
     socket.on('add-subscription', function (app) {
 
         //Get the current status of this applicaion.
-        con.query("select h.ApplicationName, h.AlertName, h.Date from mydb.history h inner join " +
+        con.query("select h.ApplicationName, h.AlertName, DATE_FORMAT(h.Date, '%m/%d/%Y %H:%i:%S') as Date from mydb.history h inner join " +
             "(select ApplicationName, max(Date) as MaxDate from mydb.history group by ApplicationName) " +
             "an on h.ApplicationName = an.ApplicationName and h.Date = an.MaxDate and an.ApplicationName = '" + app + "'", function (err, result, fields) {
                 if (err) throw err;

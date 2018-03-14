@@ -43,7 +43,7 @@ socket.on('alert-raised', function (data) {
             rows[i].cells[2].textContent = data.AlertMessage;
 
             var d = new Date();
-            rows[i].cells[3].textContent = d.toLocaleString("en-GB");
+            rows[i].cells[3].textContent = d.toLocaleString("en-GB").replace(',','');
 
         }
     }
