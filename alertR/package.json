@@ -3,11 +3,43 @@
   "version": "0.0.0",
   "description": "alertR",
   "main": "app.js",
-  "author": {
-    "name": "Tim"
-  },
+  "author": "Tim",
   "dependencies": {
     "express": "^4.15.2",
-    "socket.io": "^2.0.3"
-  }
+    "fs": "0.0.1-security",
+    "ip": "^1.1.5",
+    "mysql": "^2.15.0",
+    "socket.io": "^2.0.3",
+    "vm": "^0.1.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "grunt": "^1.0.2",
+    "grunt-force-task": "^2.0.0",
+    "jshint": "^2.9.5",
+    "mocha": "^5.0.5",
+    "mocha-sinon": "^2.0.0",
+    "sinon": "^4.5.0",
+    "socket-tester": "^1.2.1",
+    "socket.io-client": "^2.1.0"
+  },
+  "scripts": {
+    "start": "node app",
+    "predev": "grunt",
+    "dev": "start http://localhost:3000 & nodemon app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timgrayson85/alertR.git"
+  },
+  "keywords": [
+    "javascript",
+    "node",
+    "alerting"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/timgrayson85/alertR/issues"
+  },
+  "homepage": "https://github.com/timgrayson85/alertR#readme"
 }

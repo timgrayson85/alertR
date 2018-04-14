@@ -3,17 +3,17 @@
 // Emit an event when a user adds an application to their list. 
 function addAppEvent(name) {
     socket.emit('add-application', name);
-};
+}
 
 // Emit an event when a user subscribes to an application. 
 function addSubEvent(name) {
     socket.emit('add-subscription', name);
-};
+}
 
 // Emit an event when a user raises an alert on an application.
 function raiseAlert(name, alertLevel, alertMessage) {
     socket.emit('alert-raised', { Name: name, AlertLevel: alertLevel, AlertMessage: alertMessage });
-};
+}
 
 
 socket.on('alert-raised', function (data) {
@@ -143,7 +143,7 @@ socket.on('application-added', function addApplication(name) {
 
         cell2.addEventListener("click", function () {
             var myWindow = window.open("alertdialog.html?" + name, "", "width=300,height=500");
-        })
+        });
     }
 
 });
