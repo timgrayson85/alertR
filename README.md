@@ -15,7 +15,7 @@ $ npm install
 3. Start the application:
 
 ```
-$npm run dev
+$ npm run dev
 ```
 
 4. Let your colleagues know when something bad has happened:
