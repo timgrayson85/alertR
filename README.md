@@ -6,33 +6,19 @@
 
 <code>https://nodejs.org/en/download/</code>
 
-2. Install socket.io:
+2. Install Dependencies:
 
 ```
-$ npm install socket.io
+$ npm install
 ```
 
-3. Install Express:
+3. Start the application:
 
 ```
-$npm install --save express@4.15.2
+$npm run dev
 ```
 
-4. Install mySQL:
-
-```
-$npm install mysql
-```
-
-5. To start the application:
-
-```
-$node app.js
-```
-
-6. Open a browser and point to <code>http://localhost:8080</code>
-
-7. Let your colleagues know when something bad has happened:
+4. Let your colleagues know when something bad has happened:
 
 ![demo](http://g.recordit.co/cziKJwlF9h.gif)
 
