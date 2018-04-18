@@ -15,7 +15,6 @@ function raiseAlert(name, alertLevel, alertMessage) {
     socket.emit('alert-raised', { Name: name, AlertLevel: alertLevel, AlertMessage: alertMessage });
 }
 
-
 socket.on('alert-raised', function (data) {
     var table = document.getElementById("mySubs");
     var rows = table.getElementsByTagName('tr');

@@ -15,6 +15,7 @@
   "devDependencies": {
     "chai": "^4.1.2",
     "grunt": "^1.0.2",
+    "grunt-contrib-less": "^1.4.1",
     "grunt-force-task": "^2.0.0",
     "jshint": "^2.9.5",
     "mocha": "^5.0.5",
@@ -26,7 +27,7 @@
   "scripts": {
     "start": "node app",
     "predev": "grunt",
-    "dev": "start http://localhost:3000 & nodemon app"
+    "dev": "start http://localhost:3000 & nodemon app --watch **/** --watch public/style.less"
   },
   "repository": {
     "type": "git",
