@@ -6,44 +6,41 @@
     <title>Raise new alert</title>
     <script src="/socket.io/socket.io.js"></script>
     <script src="functions.js"></script>
-
-<style>   
-    
-    .alert {
-    padding: 20px;
-    background-color: #f44336;
-    color: white;
-    opacity: 1;
-    transition: opacity 0.6s;
-    margin-bottom: 15px;
-    }
-
-    .alert.warning {background-color: #ff9800;}
-    .alert.info {background-color: #2196F3;}
-    .alert.success {background-color: #4CAF50;}
-  
-  </style>
- 
-
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" href="fontawesome-all.css">
 </head>
 <body>
 
     <h3 id="myHeader"></h3>
 
     <div class="alert" onclick="raiseAlert(url, 'Critical', alertText.value)">
-        <strong>Critical!</strong> Something has gone terribly wrong.
+        <tr>
+            <td><i class="fas fa-times-circle"></i></td><td><strong>   Critical!</strong> Something has gone terribly wrong.</td>
+        </tr>
     </div>
     
     <div class="alert warning"  onclick="raiseAlert(url, 'Warning', alertText.value)">
-        <strong>Warning!</strong> Something has gone wrong but there is no user impact yet.
+        <tr> 
+        <td>    <i class="fas fa-exclamation-triangle"></i>  </td>
+        <td><strong>Warning!</strong>   Something has gone wrong but there is no user impact yet.</td>
+    </tr>  
     </div>
 
     <div class="alert info"  onclick="raiseAlert(url, 'Information', alertText.value)">
-        <strong>Info!</strong> Non-urgent information.
+            
+            <tr>
+                <td><i class="fas fa-info-circle"></i></td>
+                <td>  <strong>Info!</strong>   Non-urgent information.</td>
+            </tr> 
     </div>
 
     <div class="alert success"  onclick="raiseAlert(url, 'Success', alertText.value)">
-        <strong>OK!</strong> Everything is ok now.
+            
+            <tr>
+                <td><i class="fas fa-check-square"></i></td>
+                <td>        <strong>OK!</strong>   Everything is ok now.</td>
+            </tr>
+
     </div>
 
     <h3>Alert Text (Optional)</h3>

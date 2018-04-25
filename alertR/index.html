@@ -5,57 +5,68 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
     <script src="/socket.io/socket.io.js"></script>
     <script src="functions.js"></script>
+    <link rel="stylesheet" href="fontawesome-all.css">
     
  </head>
 <body>
-    <div class="online_apps_header"><h3>All Online Applications</h3></div>
+    <div class="online_apps_header"><h3>All Online Applications    <i class="fas fa-globe"></i></h3></div>
            
-    <div id="onlineApps" style="border:1px dotted black;padding:10px;width:auto">
-        <input type="text" id="myInput" onkeyup="searchApps()" placeholder="Search for online applications..">
-
+    <div id="onlineApps">
+        <input type="text" id="myInput" onkeyup="searchApps()" placeholder="Search for online applications..." >
         <table id="myTable">
             <tr>
                 <td>TradeX</td>
                 <td><button onclick="addAppEvent('TradeX')">Add to My Applications</button></td>
-                <td><button onclick="addSubEvent('TradeX')">Subscribe</button></td>
+                <td><button onclick="addSubEvent('TradeX')">Watch</button></td>
             </tr>
             <tr>
                 <td>Booker3000</td>
                 <td><button onclick="addAppEvent('Booker3000')">Add to My Applications</button></td>
-                <td><button onclick="addSubEvent('Booker3000')">Subscribe</button></td>
+                <td><button onclick="addSubEvent('Booker3000')">Watch</button></td>
             </tr>
             <tr>
                 <td>LegalChecker</td>
                 <td><button onclick="addAppEvent('LegalChecker')">Add to My Applications</button></td>
-                <td><button onclick="addSubEvent('LegalChecker')">Subscribe</button></td>
+                <td><button onclick="addSubEvent('LegalChecker')">Watch</button></td>
             </tr>
             <tr>
                 <td>DataFaker</td>
                 <td><button onclick="addAppEvent('DataFaker')">Add to My Applications</button></td>
-                <td><button onclick="addSubEvent('DataFaker')">Subscribe</button></td>
+                <td><button onclick="addSubEvent('DataFaker')">Watch</button></td>
             </tr>
             <tr>
                 <td>RiskAnalyser</td>
                 <td><button onclick="addAppEvent('RiskAnalyser')">Add to My Applications</button></td>
-                <td><button onclick="addSubEvent('RiskAnalyser')">Subscribe</button></td>
+                <td><button onclick="addSubEvent('RiskAnalyser')">Watch</button></td>
             </tr>
             <tr>
                 <td>Accounter</td>
                 <td><button onclick="addAppEvent('Accounter')">Add to My Applications</button></td>
-                <td><button onclick="addSubEvent('Accounter')">Subscribe</button></td>
+                <td><button onclick="addSubEvent('Accounter')">Watch</button></td>
             </tr>
         </table>
     </div>
     <br />
 
     <div> 
-        <div class="child_div_1"><h3>My Applications</h3><br />
+        <div class="child_div"><h3>My Applications <i class="fas fa-code"></i></h3><br />
             <table id="myApps">
+                    <tr>
+                        <th>Application</th>
+                        <th>Action</th>
+                    </tr>
+
             </table>
         </div>
 
-        <div class="child_div_2"><h3>My Subscriptions</h3><br />
+        <div class="child_div"><h3>Watching <i class="fas fa-eye"></i></h3><br />
             <table id="mySubs">
+                    <tr>
+                        <th>Application</th>
+                        <th>Alert Level</th>
+                        <th>Description</th>
+                        <th>Date</th>              
+                    </tr>
             </table>
         </div>
     </div>

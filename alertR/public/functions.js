@@ -65,7 +65,7 @@ socket.on('subscription-added', function addApplicationToSubs(data) {
     }
 
     if (found > 0) {
-        alert('You are already subscribed to ' + data.Name);
+        alert('You are already watching ' + data.Name);
     }
     else {
         // Add the application to the top of the table.
@@ -114,6 +114,10 @@ socket.on('application-added', function addApplication(name) {
 
     var button = document.createElement("button");
     button.innerHTML = "Raise Alert";
+
+    var removeButton = document.createElement("button");
+    removeButton.innerHTML = "Remove";
+
     var found = 0;
 
     // Check if the user is already subscribed before adding this application.
@@ -135,12 +139,12 @@ socket.on('application-added', function addApplication(name) {
 
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
 
         cell1.innerHTML = name;
         cell2.appendChild(button);
+        cell2.appendChild(removeButton);
 
-        cell2.addEventListener("click", function () {
+        button.addEventListener("click", function () {
             var myWindow = window.open("alertdialog.html?" + name, "", "width=300,height=500");
         });
     }

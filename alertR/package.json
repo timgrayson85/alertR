@@ -27,7 +27,7 @@
   "scripts": {
     "start": "node app",
     "predev": "grunt",
-    "dev": "start http://localhost:3000 & nodemon app --watch **/** --watch public/style.less"
+    "dev": "start http://localhost:3000 & nodemon app -e html,js,less,json"
   },
   "repository": {
     "type": "git",

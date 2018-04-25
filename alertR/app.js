@@ -66,7 +66,7 @@ con.connect(function (err) {
         console.log("Number of records inserted: " + result.affectedRows);
     });
 
-    con.query("CREATE TABLE IF NOT EXISTS History (ApplicationName VARCHAR(45) , AlertName VARCHAR(45), Date DATETIME)", function (err, result) {
+    con.query("CREATE TABLE IF NOT EXISTS History (ApplicationName VARCHAR(45) , AlertName VARCHAR(45), Date DATETIME, Description VARCHAR(255))", function (err, result) {
         if (err) throw err;
         console.log("History table created");
     });
@@ -96,14 +96,15 @@ io.on('connection', function (socket) {
     socket.on('add-subscription', function (app) {
 
         //Get the current status of this applicaion.
-        con.query("select h.ApplicationName, h.AlertName, DATE_FORMAT(h.Date, '%m/%d/%Y %H:%i:%S') as Date from mydb.history h inner join " +
+        con.query("select h.ApplicationName, h.AlertName, DATE_FORMAT(h.Date, '%m/%d/%Y %H:%i:%S') as Date, Description from mydb.history h inner join " +
             "(select ApplicationName, max(Date) as MaxDate from mydb.history group by ApplicationName) " +
             "an on h.ApplicationName = an.ApplicationName and h.Date = an.MaxDate and an.ApplicationName = '" + app + "'", function (err, result, fields) {
                 if (err) throw err;
                 var alertLevel = result[0].AlertName;
                 var alertDate = result[0].Date;
+                var alertMessage = result[0].Description;
 
-                io.to(ip + '-room').emit('subscription-added', { Name: app, AlertLevel: alertLevel, AlertDate: alertDate });
+                io.to(ip + '-room').emit('subscription-added', { Name: app, AlertLevel: alertLevel, AlertDate: alertDate, AlertMessage: alertMessage  });
                 console.log('User ' + ip + ' subscribed to: ' + app);
 
             });
@@ -114,7 +115,7 @@ io.on('connection', function (socket) {
     socket.on('alert-raised', function (json) {
 
         // Write alert to database.
-        con.query("INSERT INTO History (ApplicationName, AlertName, Date) VALUES ('" + json.Name + "','" + json.AlertLevel + "', NOW())", function (err, result) {
+        con.query("INSERT INTO History (ApplicationName, AlertName, Date, Description) VALUES ('" + json.Name + "','" + json.AlertLevel + "', NOW(), '" + json.AlertMessage + "')", function (err, result) {
             if (err) throw err;
             console.log("Number of records inserted: " + result.affectedRows);
         });
