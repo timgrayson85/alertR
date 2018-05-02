@@ -190,7 +190,6 @@ ClientBin/
 node_modules/
 orleans.codegen.cs
 public/webfonts/
-/alertR/public/fontawesome-all.css
 
 # RIA/Silverlight projects
 Generated_Code/
@@ -244,8 +243,5 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
-alertR/public/fontawesome-all.css
-alertR/public/fontawesome-all.css
-alertR/public/fontawesome-all.css
-alertR/public/fontawesome-all.css
-alertR/public/fontawesome-all.css
+**/fontawesome-all.css
+
