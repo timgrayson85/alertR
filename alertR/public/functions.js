@@ -9,6 +9,12 @@ function removeAppEvent(name) {
     socket.emit('remove-application', name);
 }
 
+// Emit an event when a user removes an application from their list. 
+function removeSubEvent(name) {
+    socket.emit('remove-subscription', name);
+}
+
+
 // Emit an event when a user subscribes to an application. 
 function addSubEvent(name) {
     socket.emit('add-subscription', name);
@@ -57,6 +63,7 @@ socket.on('subscription-added', function addApplicationToSubs(data) {
     var table = document.getElementById("mySubs");
     var rows = table.getElementsByTagName('tr');
     var found = 0;
+    var name = data.Name;
 
     //Check if the user is already subscribed before adding this application.
     if (rows.length > 0) {
@@ -77,6 +84,7 @@ socket.on('subscription-added', function addApplicationToSubs(data) {
         var cell2 = row.insertCell(1);
         var cell3 = row.insertCell(2);
         var cell4 = row.insertCell(3);
+        var cell5 = row.insertCell(4);
 
         cell1.innerHTML = data.Name;
         cell2.innerHTML = data.AlertLevel;
@@ -90,6 +98,11 @@ socket.on('subscription-added', function addApplicationToSubs(data) {
         }
 
         cell4.innerHTML = data.AlertDate;
+
+        var removeButton = document.createElement("button");
+        removeButton.innerHTML = "Remove";
+
+        cell5.appendChild(removeButton);   
 
         switch (data.AlertLevel) {
             case "Critical":
@@ -106,6 +119,10 @@ socket.on('subscription-added', function addApplicationToSubs(data) {
                 break;
         }
     }
+
+    removeButton.addEventListener("click", function () {
+        removeSubEvent(name);
+    });
 });
 
 socket.on('application-added', function addApplication(name) {
@@ -159,6 +176,18 @@ socket.on('application-added', function addApplication(name) {
 
 socket.on('application-removed' , function removeApplication (name) {
     var table = document.getElementById("myApps");
+    var rows = table.getElementsByTagName('tr');
+
+        for (var i = 1; i < rows.length; i++) {
+            if (rows[i].cells[0].textContent == name) {
+                table.deleteRow(i);
+            }
+        }  
+});
+
+
+socket.on('subscription-removed' , function removeSubscription (name) {
+    var table = document.getElementById("mySubs");
     var rows = table.getElementsByTagName('tr');
 
         for (var i = 1; i < rows.length; i++) {

@@ -96,6 +96,12 @@ io.on('connection', function (socket) {
         console.log('User ' + ip + ' removed: ' + app + ' from their apps');
     });
 
+    socket.on('remove-subscription', function (app) {
+        io.to(ip + '-room').emit('subscription-removed', app);
+        console.log('User ' + ip + ' removed: ' + app + ' from their subscriptions');
+    });
+
+
     
 
     // Listen for an 'add-subscription' event then push it to all sockets assigned to the client.
