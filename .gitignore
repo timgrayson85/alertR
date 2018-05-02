@@ -7,7 +7,7 @@
 *.userosscache
 *.sln.docstates
 .vscode
-public/fontawesome-all.css
+alertR/public/fontawesome-all.css
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
