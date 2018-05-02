@@ -91,6 +91,13 @@ io.on('connection', function (socket) {
 
     });
 
+    socket.on('remove-application', function (app) {
+        io.to(ip + '-room').emit('application-removed', app);
+        console.log('User ' + ip + ' removed: ' + app + ' from their apps');
+    });
+
+    
+
     // Listen for an 'add-subscription' event then push it to all sockets assigned to the client.
     // This is necessary in case the user has multiple tabs or browsers open.
     socket.on('add-subscription', function (app) {

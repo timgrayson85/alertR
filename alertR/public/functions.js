@@ -5,6 +5,10 @@ function addAppEvent(name) {
     socket.emit('add-application', name);
 }
 
+function removeAppEvent(name) {
+    socket.emit('remove-application', name);
+}
+
 // Emit an event when a user subscribes to an application. 
 function addSubEvent(name) {
     socket.emit('add-subscription', name);
@@ -47,7 +51,6 @@ socket.on('alert-raised', function (data) {
         }
     }
 });
-
 
 socket.on('subscription-added', function addApplicationToSubs(data) {
     // Add the clicked application to the list of my Apps.
@@ -105,8 +108,6 @@ socket.on('subscription-added', function addApplicationToSubs(data) {
     }
 });
 
-
-
 socket.on('application-added', function addApplication(name) {
     // Add the clicked application to the list of my Apps.
     var table = document.getElementById("myApps");
@@ -122,7 +123,7 @@ socket.on('application-added', function addApplication(name) {
 
     // Check if the user is already subscribed before adding this application.
     if (rows.length > 0) {
-        for (var i = 0; i < rows.length; i++) {
+        for (var i = 1; i < rows.length; i++) {
             // Substring required to trim off 'Raise Alert' text.
             if (rows[i].cells[0].textContent == name) {
                 found++;
@@ -144,13 +145,28 @@ socket.on('application-added', function addApplication(name) {
         cell2.appendChild(button);
         cell2.appendChild(removeButton);
 
+        }
+
         button.addEventListener("click", function () {
             var myWindow = window.open("alertdialog.html?" + name, "", "width=300,height=500");
         });
-    }
 
+
+        removeButton.addEventListener("click", function () {
+            removeAppEvent(name);
+        });
 });
 
+socket.on('application-removed' , function removeApplication (name) {
+    var table = document.getElementById("myApps");
+    var rows = table.getElementsByTagName('tr');
+
+        for (var i = 1; i < rows.length; i++) {
+            if (rows[i].cells[0].textContent == name) {
+                table.deleteRow(i);
+            }
+        }  
+});
 
 function searchApps() {
     // Declare variables.
