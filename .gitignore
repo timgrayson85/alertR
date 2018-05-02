@@ -243,6 +243,4 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
-**/fontawesome-all.css
-
 alertR/public/fontawesome-all.css
