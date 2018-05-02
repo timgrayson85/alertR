@@ -7,8 +7,7 @@
 *.userosscache
 *.sln.docstates
 .vscode
-public/fontawesome-all.css
-public/webfonts
+
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -190,6 +189,8 @@ ClientBin/
 *.publishsettings
 node_modules/
 orleans.codegen.cs
+public/webfonts/
+/alertR/public/fontawesome-all.css
 
 # RIA/Silverlight projects
 Generated_Code/
@@ -243,3 +244,8 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+alertR/public/fontawesome-all.css
+alertR/public/fontawesome-all.css
+alertR/public/fontawesome-all.css
+alertR/public/fontawesome-all.css
+alertR/public/fontawesome-all.css
