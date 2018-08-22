@@ -1,32 +1,42 @@
-var expect = require('chai').expect;  
-var app = require('../app.js');
-var io = require('socket.io-client');
+'use strict'
 
-var socketUrl = 'http://localhost:3000',
-  sender, 
-  receiver;
+var expect = require('chai').expect
+  , server = require('../app')
+  , io = require('socket.io-client')
+  , ioOptions = { 
+      transports: ['websocket']
+    , forceNew: true
+    , reconnection: false
+  }
+  , sender
+  , receiver
 
+
+describe('Alerting Events', function(){
+  beforeEach(function(done){
+
+    // connect two io clients
+    sender = io('http://localhost:3000/', ioOptions)    
+    receiver = io('http://localhost:3000/', ioOptions)    
+    // finish beforeEach setup
+    done()
+  })
+  afterEach(function(done){
     
-var server,
-    options ={
-        transports: ['websocket'],
-        'force new connection': true
-    };
+    // disconnect io clients after each test
+    sender.disconnect()
+    receiver.disconnect()
+    done()
+  })
 
-  describe("User Connections", function () {
-       beforeEach(function (done) {
-           // start the server
-           server = require('../app').server;
-           done();
-     
-       });
-
-       it("Logs that a user has connected", function (done) {
-
-        // Just fail until we can actually implement some tests.
-        expect(1).to.equal(2);
-        done();
-
-        });
-
-    });
+  describe('Emit Events', function(){
+    it('Clients should receive correct message when the `alert-raised` event is emited.', function(done){
+      sender.emit('alert-raised', { Name: 'testApp', AlertLevel: 'Critical'})
+      receiver.on('alert-raised', function(msg){
+        expect(msg.Name).to.equal('testApp')
+        expect(msg.AlertLevel).to.equal('Critical')
+        done()
+        })
+      })
+    })
+  })

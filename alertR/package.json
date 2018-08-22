@@ -5,6 +5,7 @@
   "main": "app.js",
   "author": "Tim",
   "dependencies": {
+    "chart.js": "^2.7.2",
     "express": "^4.15.2",
     "fs": "0.0.1-security",
     "ip": "^1.1.5",

@@ -1,5 +1,7 @@
 ﻿var socket = io();
 
+
+
 // Emit an event when a user adds an application to their list. 
 function addAppEvent(name) {
     socket.emit('add-application', name);
@@ -13,7 +15,6 @@ function removeAppEvent(name) {
 function removeSubEvent(name) {
     socket.emit('remove-subscription', name);
 }
-
 
 // Emit an event when a user subscribes to an application. 
 function addSubEvent(name) {
@@ -102,7 +103,11 @@ socket.on('subscription-added', function addApplicationToSubs(data) {
         var removeButton = document.createElement("button");
         removeButton.innerHTML = "Remove";
 
-        cell5.appendChild(removeButton);   
+        cell5.appendChild(removeButton); 
+        
+        removeButton.addEventListener("click", function () {
+            removeSubEvent(name);
+        });
 
         switch (data.AlertLevel) {
             case "Critical":
@@ -119,10 +124,6 @@ socket.on('subscription-added', function addApplicationToSubs(data) {
                 break;
         }
     }
-
-    removeButton.addEventListener("click", function () {
-        removeSubEvent(name);
-    });
 });
 
 socket.on('application-added', function addApplication(name) {
@@ -185,7 +186,6 @@ socket.on('application-removed' , function removeApplication (name) {
         }  
 });
 
-
 socket.on('subscription-removed' , function removeSubscription (name) {
     var table = document.getElementById("mySubs");
     var rows = table.getElementsByTagName('tr');
@@ -198,7 +198,6 @@ socket.on('subscription-removed' , function removeSubscription (name) {
 });
 
 function searchApps() {
-    // Declare variables.
     var input, filter, ul, li, a, i;
     input = document.getElementById('myInput');
     filter = input.value.toUpperCase();
@@ -214,5 +213,5 @@ function searchApps() {
             li[i].style.display = "none";
         }
     }
-
 }
+

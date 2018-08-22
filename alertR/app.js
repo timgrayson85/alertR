@@ -7,16 +7,12 @@ var ip = require('ip');
 
 var port = process.env.PORT || 3000;
 
-
-
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/index.html');
 });
 
-
 // Make JavaScript and CSS files available.
 app.use(express.static('./public'));
-
 
 // Connect to MySQL Database.
 var con = mysql.createConnection({
@@ -25,7 +21,6 @@ var con = mysql.createConnection({
     password: "tim", // Replace me.
     database: "mydb"
 });
-
 
 // Set up Database.
 con.connect(function (err) {
@@ -70,6 +65,7 @@ con.connect(function (err) {
         if (err) throw err;
         console.log("History table created");
     });
+    
 });
 
 
@@ -100,9 +96,7 @@ io.on('connection', function (socket) {
         io.to(ip + '-room').emit('subscription-removed', app);
         console.log('User ' + ip + ' removed: ' + app + ' from their subscriptions');
     });
-
-
-    
+   
 
     // Listen for an 'add-subscription' event then push it to all sockets assigned to the client.
     // This is necessary in case the user has multiple tabs or browsers open.
@@ -139,6 +133,16 @@ io.on('connection', function (socket) {
     });
 
 
+    socket.on('get-application-stats', function (app) {
+        con.query("select Date, count(*) from history where ApplicationName = '" + app + "' group by MONTH(Date) order by Date desc", function (err, results) {
+            if  (err) throw err;
+
+            io.to(ip + '-room').emit('stats-returned', results);
+            alert(results);
+        });
+    });
+
+
     socket.on('disconnect', function () {
         console.log('user disconnected');
     });
@@ -150,3 +154,4 @@ http.listen(port, function () {
     // Put a friendly message on the terminal
     console.log('Server running at http://' + ip.address() +':' + port + '/');
 });
+

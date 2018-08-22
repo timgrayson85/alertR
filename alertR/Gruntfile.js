@@ -12,7 +12,7 @@ grunt.initConfig({
         }
     },
     jshint: {
-        files: ["*.js","public/*.js","test/*.js" ]
+        files: ["app.js","public/functions.js","test/*.js" ]
     } 
 });
 
