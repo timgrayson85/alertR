@@ -28,7 +28,9 @@
   "scripts": {
     "start": "node app",
     "predev": "grunt",
-    "dev": "start http://localhost:3000 & nodemon app -e html,js,less,json"
+    "dev": "start http://localhost:3000 & nodemon app -e html,js,less,json",
+    "test": "mocha --exit"
+
   },
   "repository": {
     "type": "git",

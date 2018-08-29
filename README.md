@@ -18,7 +18,13 @@ $ npm install
 $ npm run dev
 ```
 
-4. Let your colleagues know when something bad has happened:
+4. Test the application:
+
+```
+$ npm test
+```
+
+5. Let your colleagues know when something bad has happened:
 
 ![demo](http://g.recordit.co/cziKJwlF9h.gif)
 

@@ -12,7 +12,7 @@ var expect = require('chai').expect
   , receiver
 
 
-describe('Alerting Events', function(){
+describe('Testing alertR', function(){
   beforeEach(function(done){
 
     // connect two io clients
@@ -31,12 +31,25 @@ describe('Alerting Events', function(){
 
   describe('Emit Events', function(){
     it('Clients should receive correct message when the `alert-raised` event is emited.', function(done){
-      sender.emit('alert-raised', { Name: 'testApp', AlertLevel: 'Critical'})
+      sender.emit('alert-raised', { Name: 'Test Application', AlertLevel: 'Critical', AlertMessage: 'Hardware failure'})
       receiver.on('alert-raised', function(msg){
-        expect(msg.Name).to.equal('testApp')
+        expect(msg.Name).to.equal('Test Application')
         expect(msg.AlertLevel).to.equal('Critical')
+        expect(msg.AlertMessage).to.equal('Hardware failure')
         done()
         })
       })
-    })
-  })
+    }) 
+
+    describe('Emit Events', function(){
+        it('Clients should receive correct message when the `alert-raised` event is emited.', function(done){
+          sender.emit('alert-raised', { Name: 'Test Application', AlertLevel: 'Critical', AlertMessage: 'Hardware failure'})
+          receiver.on('alert-raised', function(msg){
+            expect(msg.Name).to.equal('Test Application')
+            expect(msg.AlertLevel).to.equal('Critical')
+            expect(msg.AlertMessage).to.equal('Hardware failure')
+            done()
+            })
+          })
+        }) 
+      })

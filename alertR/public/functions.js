@@ -1,7 +1,5 @@
 ﻿var socket = io();
 
-
-
 // Emit an event when a user adds an application to their list. 
 function addAppEvent(name) {
     socket.emit('add-application', name);
@@ -54,7 +52,6 @@ socket.on('alert-raised', function (data) {
 
             var d = new Date();
             rows[i].cells[3].textContent = d.toLocaleString("en-GB").replace(',','');
-
         }
     }
 });
