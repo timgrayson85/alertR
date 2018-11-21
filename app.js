@@ -2,7 +2,6 @@
 var app = express();
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
-var con = require('./mysql-setup');
 var ip = require('ip');
 
 var port = process.env.PORT || 3000;
@@ -46,27 +45,27 @@ io.on('connection', function (socket) {
     socket.on('add-subscription', function (app) {
 
         //Get the current status of this applicaion.
-        con.query("select h.ApplicationName, h.AlertName, DATE_FORMAT(h.Date, '%m/%d/%Y %H:%i:%S') as Date, Description from mydb.history h inner join " +
-            "(select ApplicationName, max(Date) as MaxDate from mydb.history group by ApplicationName) " +
-            "an on h.ApplicationName = an.ApplicationName and h.Date = an.MaxDate and an.ApplicationName = '" + app + "'", function (err, result, fields) {
-                if (err) throw err;
-                var alertLevel = result[0].AlertName;
-                var alertDate = result[0].Date;
-                var alertMessage = result[0].Description;
+        // con.query("select h.ApplicationName, h.AlertName, DATE_FORMAT(h.Date, '%m/%d/%Y %H:%i:%S') as Date, Description from mydb.history h inner join " +
+        //     "(select ApplicationName, max(Date) as MaxDate from mydb.history group by ApplicationName) " +
+        //     "an on h.ApplicationName = an.ApplicationName and h.Date = an.MaxDate and an.ApplicationName = '" + app + "'", function (err, result, fields) {
+        //         if (err) throw err;
+        //         var alertLevel = result[0].AlertName;
+        //         var alertDate = result[0].Date;
+        //         var alertMessage = result[0].Description;
 
                 io.to(ip + '-room').emit('subscription-added', { Name: app, AlertLevel: alertLevel, AlertDate: alertDate, AlertMessage: alertMessage  });
                 console.log('User ' + ip + ' subscribed to: ' + app);
-            });
+            // });
     });
 
     // Alert all clients that an alert has been raised on an application.
     socket.on('alert-raised', function (json) {
 
         // Write alert to database.
-        con.query("INSERT INTO History (ApplicationName, AlertName, Date, Description) VALUES ('" + json.Name + "','" + json.AlertLevel + "', NOW(), '" + json.AlertMessage + "')", function (err, result) {
-            if (err) throw err;
-            console.log("Number of records inserted: " + result.affectedRows);
-        });
+        // con.query("INSERT INTO History (ApplicationName, AlertName, Date, Description) VALUES ('" + json.Name + "','" + json.AlertLevel + "', NOW(), '" + json.AlertMessage + "')", function (err, result) {
+        //     if (err) throw err;
+        //     console.log("Number of records inserted: " + result.affectedRows);
+        // });
 
         io.emit('alert-raised', json);
         console.log(json.AlertLevel + ' alert has been raised on ' + json.Name);
