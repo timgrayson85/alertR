@@ -13,15 +13,26 @@
     'header header header header header'
     'online-apps my-apps my-apps alerts alerts'
     'online-apps my-apps my-apps alerts alerts';
-  grid-gap: 10px;
-  background-color: #282c34;
-  padding: 10px;
+  grid-gap: 2px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 2px;
   min-height: 95vh;
+  color: white;
 }
 
 .app-container > div {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: #282c34;
   text-align: center;
   padding: 20px 0;
   font-size: 30px;
+}
+
+.application {
+  border: solid white 1px;
+  padding: 5px 5px 5px 5px;
+  margin: 5px;
+}
+
+.application > span {
+  padding: 5px;
 }

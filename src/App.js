@@ -1,19 +1,23 @@
 import React from 'react';
-import OnlineApps from './OnlineApps'
+import OnlineApplications from './OnlineApplications'
 import Header from './Header'
-import MyApps from './MyApps'
+import MyApplications from './MyApplications'
 import Alerts from './Alerts'
 import './App.css';
 
-function App() {
-  return( 
-  <div class="app-container">
-  <Header />
-  <OnlineApps />
-  <MyApps />
-  <Alerts />
-  </div>
-  );
+
+class App extends React.Component {
+
+  render() {
+    return (
+    <div class="app-container">
+      <Header />
+      <OnlineApplications />
+      <MyApplications />
+      <Alerts />
+    </div>
+    );
+  }
 }
 
 export default App;

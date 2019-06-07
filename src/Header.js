@@ -2,10 +2,16 @@
 import React from 'react';
 import './App.css';
 
-function Header() {
-  return( 
-   <div class="header">AlertR - Application Alerting</div>
-  );
+class Header extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+        <div class="header">AlertR - Application Alerting</div>
+    );
+  }
 }
 
 export default Header;
