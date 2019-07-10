@@ -5,6 +5,8 @@ import MyApplications from './MyApplications'
 import Alerts from './Alerts'
 import './App.css';
 
+const allApps = [{ name: 'Panda', status:'Online', lastUpdated: '20190512' }
+              , { name: 'Goose', status:'Offline', lastUpdated: '20190511' }];
 
 class App extends React.Component {
 
@@ -12,7 +14,7 @@ class App extends React.Component {
     return (
     <div class="app-container">
       <Header />
-      <OnlineApplications />
+      <OnlineApplications allApps={allApps}/>
       <MyApplications />
       <Alerts />
     </div>
