@@ -1,14 +1,5 @@
 # 🚨 alertR
 
-```
-                   _    _     _ _
-            /\    | |  | |   | | |
-           /  \   | |  | | __| | | ___ _ __
-          / /\ \  | |  | |/ _` | |/ _ \ '__|
-         / ____ \ | |__| | (_| | |  __/ |
-        /_/    \_\\____/ \__,_|_|\___|_|
-```
-
 **Real-time alert notifications for when things go wrong.**
 
 Let your colleagues know instantly when something bad has happened.
