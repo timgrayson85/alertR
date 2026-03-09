@@ -16,10 +16,10 @@
     "grunt": "^1.6.1",
     "grunt-contrib-less": "^3.0.0",
     "grunt-force-task": "^2.0.0",
-    "jshint": "^2.13.0",
+    "jshint": "^0.5.9",
     "mocha": "^11.7.5",
     "mocha-sinon": "^2.0.0",
-    "sinon": "^19.0.0",
+    "sinon": "^21.0.2",
     "socket-tester": "^1.2.1",
     "socket.io-client": "^4.8.3"
   },
