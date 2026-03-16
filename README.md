@@ -12,8 +12,19 @@ Let your colleagues know instantly when something bad has happened.
 
 - 🔔 **Real-time alerts** — Instantly notify your team when incidents occur
 - 🌐 **Web-based dashboard** — Easy-to-use interface for managing alerts
-- 🗄️ **MySQL backend** — Reliable data storage for alert history
+- 💾 **LowDB storage** — Lightweight JSON-based persistence, no database server required
 - ⚡ **Node.js powered** — Fast, lightweight, and scalable
+
+---
+
+## 🔧 Recent Updates
+
+This project has been modernised (2025):
+
+- ✅ Migrated from MySQL to LowDB for simpler setup
+- ✅ Updated to Socket.IO v4
+- ✅ Security vulnerability fixes applied
+- ✅ Modernised dependencies
 
 ---
 
@@ -22,7 +33,6 @@ Let your colleagues know instantly when something bad has happened.
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/en/download/) (v14+ recommended)
-- MySQL database
 - npm (comes with Node.js)
 
 ### Installation
@@ -36,11 +46,6 @@ Let your colleagues know instantly when something bad has happened.
 2. **Install dependencies**
    ```bash
    npm install
-   ```
-
-3. **Set up the database**
-   ```bash
-   node mysql-setup.js
    ```
 
 4. **Start the application**
@@ -60,7 +65,8 @@ Let your colleagues know instantly when something bad has happened.
 | Component | Technology |
 |-----------|------------|
 | Runtime   | Node.js    |
-| Database  | MySQL      |
+| Storage   | LowDB (JSON) |
+| Real-time | Socket.IO |
 | Build     | Grunt      |
 | Testing   | Mocha      |
 
@@ -73,7 +79,8 @@ alertR/
 ├── app.js              # Main application entry point
 ├── public/             # Static assets (CSS, JS, images)
 ├── index.html          # Frontend dashboard
-├── mysql-setup.js      # Database configuration script
+├── db-setup.js         # LowDB configuration and seed data
+├── data/               # JSON database storage (auto-created)
 ├── test/               # Test suite
 └── package.json        # Dependencies and scripts
 ```
