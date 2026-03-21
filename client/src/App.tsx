@@ -113,6 +113,12 @@ function App() {
     }
   };
 
+  const addToMyApps = (name: string) => {
+    if (socket && !myApps.includes(name)) {
+      socket.emit('add-application', name);
+    }
+  };
+
   const raiseAlert = () => {
     if (socket && alertModal) {
       socket.emit('alert-raised', {
@@ -163,6 +169,9 @@ function App() {
                   <span className="app-location">{app.location}</span>
                 </div>
                 <div className="app-actions">
+                  <button className="btn btn-secondary" onClick={() => addToMyApps(app.name)}>
+                    Add to My Apps
+                  </button>
                   <button className="btn btn-primary" onClick={() => subscribe(app.name)}>
                     Watch
                   </button>
