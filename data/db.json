@@ -1,0 +1,140 @@
+{
+  "alerts": [
+    {
+      "id": 1,
+      "name": "Critical",
+      "severity": "Critical",
+      "colour": "Red"
+    },
+    {
+      "id": 2,
+      "name": "Warning",
+      "severity": "Warning",
+      "colour": "Amber"
+    },
+    {
+      "id": 3,
+      "name": "Info",
+      "severity": "Info",
+      "colour": "Blue"
+    },
+    {
+      "id": 4,
+      "name": "OK",
+      "severity": "OK",
+      "colour": "Green"
+    }
+  ],
+  "applications": [
+    {
+      "id": 1,
+      "name": "TradeX",
+      "location": "Front Office"
+    },
+    {
+      "id": 2,
+      "name": "Book3000",
+      "location": "Front Office"
+    },
+    {
+      "id": 3,
+      "name": "LegalCheck",
+      "location": "Middle Office"
+    },
+    {
+      "id": 4,
+      "name": "DataFaker",
+      "location": "Middle Office"
+    },
+    {
+      "id": 5,
+      "name": "RiskAnalyser",
+      "location": "Back Office"
+    },
+    {
+      "id": 6,
+      "name": "Accounter",
+      "location": "Back Office"
+    }
+  ],
+  "history": [
+    {
+      "applicationName": "TradeX",
+      "alertName": "Critical",
+      "date": "2026-03-11T08:56:38.775Z",
+      "description": ""
+    },
+    {
+      "applicationName": "Test Application",
+      "alertName": "Critical",
+      "date": "2026-03-11T09:14:20.614Z",
+      "description": "Hardware failure"
+    },
+    {
+      "applicationName": "Booker3000",
+      "alertName": "Information",
+      "date": "2026-03-11T12:43:09.102Z",
+      "description": ""
+    },
+    {
+      "applicationName": "Booker3000",
+      "alertName": "Information",
+      "date": "2026-03-11T12:43:10.399Z",
+      "description": ""
+    },
+    {
+      "applicationName": "Booker3000",
+      "alertName": "Success",
+      "date": "2026-03-11T12:43:12.366Z",
+      "description": ""
+    },
+    {
+      "applicationName": "Booker3000",
+      "alertName": "Success",
+      "date": "2026-03-11T12:43:12.974Z",
+      "description": ""
+    },
+    {
+      "applicationName": "Booker3000",
+      "alertName": "Critical",
+      "date": "2026-03-11T12:43:14.670Z",
+      "description": ""
+    },
+    {
+      "applicationName": "Booker3000",
+      "alertName": "Critical",
+      "date": "2026-03-11T12:43:15.342Z",
+      "description": ""
+    },
+    {
+      "applicationName": "Booker3000",
+      "alertName": "Warning",
+      "date": "2026-03-11T12:43:16.528Z",
+      "description": ""
+    },
+    {
+      "applicationName": "Booker3000",
+      "alertName": "Warning",
+      "date": "2026-03-11T12:43:17.759Z",
+      "description": ""
+    },
+    {
+      "applicationName": "Booker3000",
+      "alertName": "Information",
+      "date": "2026-03-11T12:43:27.632Z",
+      "description": ""
+    },
+    {
+      "applicationName": "Booker3000",
+      "alertName": "Critical",
+      "date": "2026-03-11T12:43:46.837Z",
+      "description": ""
+    },
+    {
+      "applicationName": "TradeX",
+      "alertName": "Success",
+      "date": "2026-03-11T12:51:53.000Z",
+      "description": ""
+    }
+  ]
+}
