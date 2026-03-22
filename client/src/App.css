@@ -111,13 +111,13 @@ body {
 }
 
 .app-card {
-  background-color: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: 0.75rem;
-  padding: 1.25rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 1.25rem;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
@@ -145,8 +145,11 @@ body {
 
 .app-actions {
   display: flex;
+  flex-direction: column;
   gap: 0.5rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  min-width: 0;
+  flex-shrink: 1;
 }
 
 .btn {
@@ -157,6 +160,10 @@ body {
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.2s, transform 0.1s;
+  white-space: nowrap;
+  flex-shrink: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .btn:hover {

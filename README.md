@@ -19,12 +19,13 @@ Let your colleagues know instantly when something bad has happened.
 
 ## 🔧 Recent Updates
 
-This project has been modernised (2025):
+This project has been modernised (2026):
 
 - ✅ Migrated from MySQL to LowDB for simpler setup
 - ✅ Updated to Socket.IO v4
 - ✅ Security vulnerability fixes applied
 - ✅ Modernised dependencies
+- ✅ React front end
 
 ---
 
@@ -62,14 +63,14 @@ This project has been modernised (2025):
 
 ## 🛠️ Tech Stack
 
-| Component | Technology |
-|-----------|------------|
-| Runtime   | Node.js    |
+| Component | Technology   |
+|-----------|--------------|
+| Runtime   | Node.js      |
 | Storage   | LowDB (JSON) |
-| Real-time | Socket.IO |
-| Build     | Grunt      |
-| Testing   | Mocha      |
-
+| Real-time | Socket.IO    |
+| Build     | Grunt        |
+| Testing   | Mocha        |
+| Front End | React        |
 ---
 
 ## 📁 Project Structure

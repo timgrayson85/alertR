@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const http = require('http').createServer(app);
 const { Server } = require('socket.io');
 const io = new Server(http);
@@ -12,6 +13,8 @@ const port = process.env.PORT || 3001;
 // Initialise database before starting server
 initDb().then(() => {
     
+    app.use(cors());
+    
     // Serve React build in production
     app.use(express.static(path.join(__dirname, 'client/build')));
     
@@ -20,9 +23,14 @@ initDb().then(() => {
         res.json(queries.getApplications());
     });
 
+    // API endpoint to get alert levels
+    app.get('/api/alert-levels', function (req, res) {
+        res.json(queries.getAlertLevels());
+    });
+
     // Handle React routing, return all requests to React app
     app.get('*', function (req, res) {
-        res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+        res.sendFile(path.join(__dirname, 'client/build'));
     });
 
     io.on('connection', function (socket) {

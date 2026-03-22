@@ -6,6 +6,7 @@
   "author": "Tim",
   "dependencies": {
     "chart.js": "^4.4.0",
+    "cors": "^2.8.6",
     "express": "^4.21.0",
     "grunt-contrib-jshint": "^3.2.0",
     "ip": "^2.0.0",

@@ -10,8 +10,13 @@ interface Application {
 interface Subscription {
   name: string;
   alertLevel: string;
-  alertMessage: string;
-  alertDate: string;
+  alertMessage: string;  alertDate: string;
+}
+
+interface Alert {
+  name: string;
+  severity: string;
+  colour: string;
 }
 
 interface AlertData {
@@ -20,16 +25,7 @@ interface AlertData {
   AlertMessage: string;
 }
 
-const APPLICATIONS: Application[] = [
-  { name: 'TradeX', location: 'Front Office' },
-  { name: 'Book3000', location: 'Front Office' },
-  { name: 'LegalCheck', location: 'Middle Office' },
-  { name: 'DataFaker', location: 'Middle Office' },
-  { name: 'RiskAnalyser', location: 'Back Office' },
-  { name: 'Accounter', location: 'Back Office' },
-];
-
-const ALERT_LEVELS = ['OK', 'Info', 'Warning', 'Critical'];
+//const ALERT_LEVELS = ['OK', 'Info', 'Warning', 'Critical'];
 const ALERT_COLORS: Record<string, string> = {
   Critical: '#ef4444',
   Warning: '#f59e0b',
@@ -40,6 +36,8 @@ const ALERT_COLORS: Record<string, string> = {
 function App() {
   const [socket, setSocket] = useState<Socket | null>(null);
   const [myApps, setMyApps] = useState<string[]>([]);
+  const [applications, setApplications] = useState<Application[]>([]);
+  const [alerts, setAlerts] = useState<Alert[]>([]);
   const [subscriptions, setSubscriptions] = useState<Subscription[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [alertModal, setAlertModal] = useState<{ app: string; open: boolean } | null>(null);
@@ -49,6 +47,16 @@ function App() {
   useEffect(() => {
     const newSocket = io();
     setSocket(newSocket);
+
+    fetch('/api/applications')
+      .then(res => res.json())
+      .then(setApplications)
+      .catch(err => console.error('Failed to fetch applications:', err));
+
+    fetch('/api/alert-levels')
+      .then(res => res.json())
+      .then(setAlerts)
+      .catch(err => console.error('Failed to fetch alert levels:', err));
 
     newSocket.on('application-added', (name: string) => {
       setMyApps((prev) => [...prev, name]);
@@ -89,12 +97,6 @@ function App() {
     };
   }, []);
 
-  const addApp = (name: string) => {
-    if (socket && !myApps.includes(name)) {
-      socket.emit('add-application', name);
-    }
-  };
-
   const removeApp = (name: string) => {
     if (socket) {
       socket.emit('remove-application', name);
@@ -132,7 +134,7 @@ function App() {
     }
   };
 
-  const filteredApps = APPLICATIONS.filter((app) =>
+  const filteredApps = applications.filter((app) =>
     app.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -255,18 +257,18 @@ function App() {
             <h2 className="modal-title">Raise Alert for {alertModal.app}</h2>
             <div className="form-group">
               <label>Alert Level</label>
-              <select
-                value={selectedLevel}
-                onChange={(e) => setSelectedLevel(e.target.value)}
-                className="form-select"
-              >
-                {ALERT_LEVELS.map((level) => (
-                  <option key={level} value={level}>
-                    {level}
-                  </option>
-                ))}
-              </select>
-            </div>
+          <select
+            value={selectedLevel}
+            onChange={(e) => setSelectedLevel(e.target.value)}
+            className="form-select"
+          >
+            {alerts.map((level) => (
+              <option key={level.name} value={level.name}>
+                {level.name}
+              </option>
+            ))}
+          </select>
+        </div>
             <div className="form-group">
               <label>Message</label>
               <textarea
