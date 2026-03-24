@@ -11,9 +11,25 @@ Let your colleagues know instantly when something bad has happened.
 ## ✨ Features
 
 - 🔔 **Real-time alerts** — Instantly notify your team when incidents occur
-- 🌐 **Web-based dashboard** — Easy-to-use interface for managing alerts
+- 🌐 **Modern React UI** — Clean, dark-themed dashboard
 - 💾 **LowDB storage** — Lightweight JSON-based persistence, no database server required
-- ⚡ **Node.js powered** — Fast, lightweight, and scalable
+- 🔌 **REST API** — Clean API endpoints for applications and alert levels
+- ⚡ **Socket.IO** — Real-time updates pushed instantly to all clients
+- 🤖 **AI-ready** — Includes GitHub Copilot agent configuration for web development assistance
+
+---
+
+## 🔧 Recent Updates
+
+This project has been modernised (2026):
+
+- ✅ Migrated from MySQL to LowDB for simpler setup
+- ✅ Replaced legacy HTML frontend with React + TypeScript
+- ✅ Updated to Socket.IO v4
+- ✅ Added REST API endpoints (`/api/applications`, `/api/alert-levels`)
+- ✅ Removed hard-coded values from frontend (now fetched from API)
+- ✅ Added CORS support for development
+- ✅ Security vulnerability fixes applied
 
 ---
 
@@ -32,7 +48,8 @@ This project has been modernised (2025):
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/en/download/) (v14+ recommended)
+
+- [Node.js](https://nodejs.org/en/download/) (v18+ recommended)
 - npm (comes with Node.js)
 
 ### Installation
@@ -43,20 +60,39 @@ This project has been modernised (2025):
    cd alertR
    ```
 
-2. **Install dependencies**
+2. **Install backend dependencies**
    ```bash
    npm install
    ```
 
-4. **Start the application**
+
+3. **Install frontend dependencies**
    ```bash
-   npm run dev
+   cd client && npm install && cd ..
    ```
 
-5. **Run tests**
+4. **Start the backend** (in one terminal)
    ```bash
-   npm test
+   npm start
    ```
+
+5. **Start the React dev server** (in another terminal)
+   ```bash
+   cd client && npm start
+   ```
+
+6. **Open in browser**
+   ```
+   http://localhost:3000
+   ```
+
+### Production Build
+
+```bash
+cd client && npm run build && cd ..
+npm start
+# App runs on http://localhost:3001
+```
 
 ---
 
@@ -64,11 +100,12 @@ This project has been modernised (2025):
 
 | Component | Technology |
 |-----------|------------|
-| Runtime   | Node.js    |
-| Storage   | LowDB (JSON) |
+| Runtime | Node.js |
+| Frontend | React 19 + TypeScript |
+| Storage | LowDB (JSON) |
 | Real-time | Socket.IO |
-| Build     | Grunt      |
-| Testing   | Mocha      |
+| Build | Vite (client), Grunt (legacy) |
+| Testing | Mocha |
 
 ---
 
@@ -76,14 +113,40 @@ This project has been modernised (2025):
 
 ```
 alertR/
-├── app.js              # Main application entry point
-├── public/             # Static assets (CSS, JS, images)
-├── index.html          # Frontend dashboard
-├── db-setup.js         # LowDB configuration and seed data
-├── data/               # JSON database storage (auto-created)
-├── test/               # Test suite
-└── package.json        # Dependencies and scripts
+├── app.js                 # Main backend entry point
+├── db-setup.js            # LowDB configuration and seed data
+├── data/                  # JSON database storage (auto-created)
+├── client/                 # React frontend
+│   ├── src/
+│   │   ├── App.tsx        # Main React component
+│   │   └── App.css        # Styles (dark theme)
+│   └── package.json
+├── .github/
+│   └── agents/
+│       └── web-dev.agent.md  # GitHub Copilot agent config
+└── package.json
 ```
+
+---
+
+## 🔌 API Endpoints
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/applications` | GET | Returns list of monitored applications |
+| `/api/alert-levels` | GET | Returns available alert levels |
+
+---
+
+## 🤖 GitHub Copilot Agent
+
+This project includes a custom Copilot agent configuration for web development assistance:
+
+```yaml
+.github/agents/web-dev.agent.md
+```
+
+The agent is configured to help with HTML, CSS, JavaScript, React, Node.js, and related web technologies.
 
 ---
 
