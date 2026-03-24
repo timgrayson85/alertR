@@ -33,9 +33,21 @@ This project has been modernised (2026):
 
 ---
 
+## 🔧 Recent Updates
+
+This project has been modernised (2025):
+
+- ✅ Migrated from MySQL to LowDB for simpler setup
+- ✅ Updated to Socket.IO v4
+- ✅ Security vulnerability fixes applied
+- ✅ Modernised dependencies
+
+---
+
 ## 🚀 Quick Start
 
 ### Prerequisites
+
 
 - [Node.js](https://nodejs.org/en/download/) (v18+ recommended)
 - npm (comes with Node.js)
@@ -52,6 +64,7 @@ This project has been modernised (2026):
    ```bash
    npm install
    ```
+
 
 3. **Install frontend dependencies**
    ```bash
