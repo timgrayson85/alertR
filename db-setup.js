@@ -81,7 +81,7 @@ const queries = {
     getApplications: () => db.data.applications,
     
     // Get all alert levels
-    getAlerts: () => db.data.alerts
+    getAlertLevels: () => db.data.alerts
 };
 
 module.exports = { db, initDb, queries };

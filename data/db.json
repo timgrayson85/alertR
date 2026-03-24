@@ -1,0 +1,266 @@
+{
+  "alerts": [
+    {
+      "id": 1,
+      "name": "Critical",
+      "severity": "Critical",
+      "colour": "Red"
+    },
+    {
+      "id": 2,
+      "name": "Warning",
+      "severity": "Warning",
+      "colour": "Amber"
+    },
+    {
+      "id": 3,
+      "name": "Info",
+      "severity": "Info",
+      "colour": "Blue"
+    },
+    {
+      "id": 4,
+      "name": "OK",
+      "severity": "OK",
+      "colour": "Green"
+    }
+  ],
+  "applications": [
+    {
+      "id": 1,
+      "name": "TradeX",
+      "location": "Front Office"
+    },
+    {
+      "id": 2,
+      "name": "Book3000",
+      "location": "Front Office"
+    },
+    {
+      "id": 3,
+      "name": "LegalChecker",
+      "location": "Middle Office"
+    },
+    {
+      "id": 4,
+      "name": "DataFaker",
+      "location": "Middle Office"
+    },
+    {
+      "id": 5,
+      "name": "RiskAnalyser",
+      "location": "Back Office"
+    },
+    {
+      "id": 6,
+      "name": "Accounter",
+      "location": "Back Office"
+    }
+  ],
+  "history": [
+    {
+      "applicationName": "TradeX",
+      "alertName": "Critical",
+      "date": "2026-03-11T08:56:38.775Z",
+      "description": ""
+    },
+    {
+      "applicationName": "Test Application",
+      "alertName": "Critical",
+      "date": "2026-03-11T09:14:20.614Z",
+      "description": "Hardware failure"
+    },
+    {
+      "applicationName": "Booker3000",
+      "alertName": "Information",
+      "date": "2026-03-11T12:43:09.102Z",
+      "description": ""
+    },
+    {
+      "applicationName": "Booker3000",
+      "alertName": "Information",
+      "date": "2026-03-11T12:43:10.399Z",
+      "description": ""
+    },
+    {
+      "applicationName": "Booker3000",
+      "alertName": "Success",
+      "date": "2026-03-11T12:43:12.366Z",
+      "description": ""
+    },
+    {
+      "applicationName": "Booker3000",
+      "alertName": "Success",
+      "date": "2026-03-11T12:43:12.974Z",
+      "description": ""
+    },
+    {
+      "applicationName": "Booker3000",
+      "alertName": "Critical",
+      "date": "2026-03-11T12:43:14.670Z",
+      "description": ""
+    },
+    {
+      "applicationName": "Booker3000",
+      "alertName": "Critical",
+      "date": "2026-03-11T12:43:15.342Z",
+      "description": ""
+    },
+    {
+      "applicationName": "Booker3000",
+      "alertName": "Warning",
+      "date": "2026-03-11T12:43:16.528Z",
+      "description": ""
+    },
+    {
+      "applicationName": "Booker3000",
+      "alertName": "Warning",
+      "date": "2026-03-11T12:43:17.759Z",
+      "description": ""
+    },
+    {
+      "applicationName": "Booker3000",
+      "alertName": "Information",
+      "date": "2026-03-11T12:43:27.632Z",
+      "description": ""
+    },
+    {
+      "applicationName": "Booker3000",
+      "alertName": "Critical",
+      "date": "2026-03-11T12:43:46.837Z",
+      "description": ""
+    },
+    {
+      "applicationName": "TradeX",
+      "alertName": "Success",
+      "date": "2026-03-11T12:51:53.000Z",
+      "description": ""
+    },
+    {
+      "applicationName": "TradeX",
+      "alertName": "Critical",
+      "date": "2026-03-21T07:17:16.629Z",
+      "description": "Something bad has happened"
+    },
+    {
+      "applicationName": "TradeX",
+      "alertName": "OK",
+      "date": "2026-03-21T07:19:17.161Z",
+      "description": "Everythings ok now"
+    },
+    {
+      "applicationName": "TradeX",
+      "alertName": "Info",
+      "date": "2026-03-21T07:27:38.442Z",
+      "description": "Tst"
+    },
+    {
+      "applicationName": "RiskAnalyser",
+      "alertName": "Warning",
+      "date": "2026-03-21T08:35:39.264Z",
+      "description": "Warning"
+    },
+    {
+      "applicationName": "Book3000",
+      "alertName": "Critical",
+      "date": "2026-03-21T08:58:26.602Z",
+      "description": "Critical"
+    },
+    {
+      "applicationName": "TradeX",
+      "alertName": "Warning",
+      "date": "2026-03-21T09:15:01.410Z",
+      "description": "asdasd"
+    },
+    {
+      "applicationName": "TradeX",
+      "alertName": "",
+      "date": "2026-03-21T09:15:24.290Z",
+      "description": "dsc"
+    },
+    {
+      "applicationName": "TradeX",
+      "alertName": "Warning",
+      "date": "2026-03-21T09:18:13.692Z",
+      "description": "dc"
+    },
+    {
+      "applicationName": "TradeX",
+      "alertName": "",
+      "date": "2026-03-21T09:18:19.670Z",
+      "description": "dcdc"
+    },
+    {
+      "applicationName": "TradeX",
+      "alertName": "",
+      "date": "2026-03-21T09:18:24.788Z",
+      "description": "dcdc"
+    },
+    {
+      "applicationName": "TradeX",
+      "alertName": "",
+      "date": "2026-03-21T09:18:44.195Z",
+      "description": "dcsc"
+    },
+    {
+      "applicationName": "TradeX",
+      "alertName": "",
+      "date": "2026-03-21T09:19:11.174Z",
+      "description": "ewf"
+    },
+    {
+      "applicationName": "TradeX",
+      "alertName": "",
+      "date": "2026-03-21T09:19:17.530Z",
+      "description": "a"
+    },
+    {
+      "applicationName": "TradeX",
+      "alertName": "",
+      "date": "2026-03-21T09:19:22.884Z",
+      "description": "sdv"
+    },
+    {
+      "applicationName": "TradeX",
+      "alertName": "Warning",
+      "date": "2026-03-21T09:19:28.618Z",
+      "description": "v"
+    },
+    {
+      "applicationName": "TradeX",
+      "alertName": "OK",
+      "date": "2026-03-21T17:06:32.266Z",
+      "description": "ok"
+    },
+    {
+      "applicationName": "TradeX",
+      "alertName": "Critical",
+      "date": "2026-03-21T17:06:42.254Z",
+      "description": "c"
+    },
+    {
+      "applicationName": "TradeX",
+      "alertName": "OK",
+      "date": "2026-03-22T11:40:48.905Z",
+      "description": "Everything is ok"
+    },
+    {
+      "applicationName": "TradeX",
+      "alertName": "Info",
+      "date": "2026-03-22T12:13:18.068Z",
+      "description": "Info"
+    },
+    {
+      "applicationName": "Book3000",
+      "alertName": "OK",
+      "date": "2026-03-22T12:13:35.041Z",
+      "description": "Critical issue resolved"
+    },
+    {
+      "applicationName": "TradeX",
+      "alertName": "Critical",
+      "date": "2026-03-22T12:19:34.428Z",
+      "description": "Something bad has happened"
+    }
+  ]
+}

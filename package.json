@@ -6,6 +6,7 @@
   "author": "Tim",
   "dependencies": {
     "chart.js": "^4.4.0",
+    "cors": "^2.8.6",
     "express": "^4.21.0",
     "grunt-contrib-jshint": "^3.2.0",
     "ip": "^2.0.0",
@@ -26,8 +27,9 @@
   },
   "scripts": {
     "start": "node app",
-    "predev": "grunt",
-    "dev": "start http://localhost:3000 & nodemon app -e html,js,less,json",
+    "dev": "nodemon app -e html,js,less,json",
+    "client": "cd client && npm start",
+    "build": "cd client && npm run build",
     "test": "mocha --exit"
   },
   "repository": {
