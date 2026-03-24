@@ -10,7 +10,7 @@ interface Application {
 interface Subscription {
   name: string;
   alertLevel: string;
-  alertMessage: string;  alertDate: string;
+   alertMessage: string;  alertDate: string;
 }
 
 interface Alert {
@@ -25,7 +25,6 @@ interface AlertData {
   AlertMessage: string;
 }
 
-//const ALERT_LEVELS = ['OK', 'Info', 'Warning', 'Critical'];
 const ALERT_COLORS: Record<string, string> = {
   Critical: '#ef4444',
   Warning: '#f59e0b',
@@ -147,7 +146,7 @@ function App() {
           <span className="logo-icon">🚨</span>
           alertR
         </h1>
-        <p className="tagline">Real-time application monitoring</p>
+        <p className="tagline">Real-time application alerting</p>
       </header>
 
       <main className="main">
