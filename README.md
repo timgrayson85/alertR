@@ -1,4 +1,4 @@
-# 🚨 alertR
+# alertR
 
 **Real-time alert notifications for when things go wrong.**
 
@@ -8,28 +8,28 @@ Let your colleagues know instantly when something bad has happened.
 
 ---
 
-## ✨ Features
+## Features
 
-- 🔔 **Real-time alerts** — Instantly notify your team when incidents occur
-- 🌐 **Modern React UI** — Clean, dark-themed dashboard
-- 💾 **LowDB storage** — Lightweight JSON-based persistence, no database server required
-- 🔌 **REST API** — Clean API endpoints for applications and alert levels
-- ⚡ **Socket.IO** — Real-time updates pushed instantly to all clients
-- 🤖 **AI-ready** — Includes GitHub Copilot agent configuration for web development assistance
+- Real-time alerts — Instantly notify your team when incidents occur
+- Modern React UI — Clean, dark-themed dashboard
+- LowDB storage — Lightweight JSON-based persistence, no database server required
+- REST API — Clean API endpoints for applications and alert levels
+- Socket.IO — Real-time updates pushed instantly to all clients
+- AI-ready — Includes GitHub Copilot agent configuration for web development assistance
 
 ---
 
-## 🔧 Recent Updates
+## Recent Updates
 
 This project has been modernised (2026):
 
-- ✅ Migrated from MySQL to LowDB for simpler setup
-- ✅ Replaced legacy HTML frontend with React + TypeScript
-- ✅ Updated to Socket.IO v4
-- ✅ Added REST API endpoints (`/api/applications`, `/api/alert-levels`)
-- ✅ Removed hard-coded values from frontend (now fetched from API)
-- ✅ Added CORS support for development
-- ✅ Security vulnerability fixes applied
+- Migrated from MySQL to LowDB for simpler setup
+- Replaced legacy HTML frontend with React + TypeScript
+- Updated to Socket.IO v4
+- Added REST API endpoints (`/api/applications`, `/api/alert-levels`)
+- Removed hard-coded values from frontend (now fetched from API)
+- Added CORS support for development
+- Security vulnerability fixes applied
 
 ---
 
@@ -96,7 +96,7 @@ npm start
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Component | Technology |
 |-----------|------------|
@@ -109,14 +109,14 @@ npm start
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 alertR/
 ├── app.js                 # Main backend entry point
 ├── db-setup.js            # LowDB configuration and seed data
 ├── data/                  # JSON database storage (auto-created)
-├── client/                 # React frontend
+├── client/                # React frontend
 │   ├── src/
 │   │   ├── App.tsx        # Main React component
 │   │   └── App.css        # Styles (dark theme)
@@ -129,7 +129,7 @@ alertR/
 
 ---
 
-## 🔌 API Endpoints
+## API Endpoints
 
 | Endpoint | Method | Description |
 |----------|--------|-------------|
@@ -138,11 +138,11 @@ alertR/
 
 ---
 
-## 🤖 GitHub Copilot Agent
+## GitHub Copilot Agent
 
 This project includes a custom Copilot agent configuration for web development assistance:
 
-```yaml
+```
 .github/agents/web-dev.agent.md
 ```
 
@@ -150,7 +150,7 @@ The agent is configured to help with HTML, CSS, JavaScript, React, Node.js, and 
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Feel free to:
 
@@ -162,18 +162,18 @@ Contributions are welcome! Feel free to:
 
 ---
 
-## 📄 License
+## License
 
 This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
-## 🙋 Support
+## Support
 
 Found a bug or have a feature request? [Open an issue](https://github.com/timgrayson85/alertR/issues) and let's chat!
 
 ---
 
 <p align="center">
-  Made with ❤️ by <a href="https://github.com/timgrayson85">Tim Grayson</a>
+  Made by <a href="https://github.com/timgrayson85">Tim Grayson</a>
 </p>
